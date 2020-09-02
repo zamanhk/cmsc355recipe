@@ -2,3 +2,5 @@
 Recipe app for android studio
 
 Kevin Ly
+
+Alycia Caughey
