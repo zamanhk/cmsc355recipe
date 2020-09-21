@@ -78,7 +78,7 @@
         android:id="@+id/calNum"
         android:layout_width="218dp"
         android:layout_height="42dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginTop="20dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/enter_calories"
@@ -86,7 +86,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.067"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/servingSizeNum" />
 
     <EditText
         android:id="@+id/totalCarbNum"
@@ -156,5 +156,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nutritionLabel" />
+
+    <EditText
+        android:id="@+id/servingSizeNum"
+        android:layout_width="218dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="@string/enter_serving_size"
+        android:inputType="number|text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secondHeader" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

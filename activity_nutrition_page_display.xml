@@ -30,10 +30,10 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nutritionLabel"
-        app:layout_constraintVertical_bias="0.114" />
+        app:layout_constraintVertical_bias="0.168" />
 
     <TextView
         android:id="@+id/calorieView"
@@ -45,10 +45,10 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.99"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/calorieLabel"
         app:layout_constraintTop_toBottomOf="@+id/nutritionLabel"
-        app:layout_constraintVertical_bias="0.114" />
+        app:layout_constraintVertical_bias="0.168" />
 
     <TextView
         android:id="@+id/totalFatLabel"
@@ -238,5 +238,31 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carbView" />
+
+    <TextView
+        android:id="@+id/servingSizeLabel"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/serving_size"
+        android:textAlignment="viewStart"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/servingSizeView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nutritionLabel" />
+
+    <TextView
+        android:id="@+id/servingSizeView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/servingsizenum"
+        android:textAlignment="viewEnd"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nutritionLabel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

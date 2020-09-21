@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity
     public static final String TOTALCARBOHYDRATES = "com.example.cookingrecipeproject.TOTALCARBOHYDRATE";
     public static final String DIETARYFIBER = "com.example.cookingrecipeproject.DIETARYFIBER";
     public static final String PROTEIN = "com.example.cookingrecipeproject.PROTEIN";
+    public static final String SERVINGSIZE = "com.example.cookingrecipeproject.SERVINGSIZE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+                EditText servingSizeNum = (EditText) findViewById(R.id.servingSizeNum);
+                String servingSizeString = servingSizeNum.getText().toString();
+
                 EditText calorieNum = (EditText) findViewById(R.id.calNum);
                 String calString = calorieNum.getText().toString();
 
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity
                 String proteinString = proteinNum.getText().toString();
 
                 Intent nutritionPageDisplayIntent = new Intent(getApplicationContext(), NutritionPageDisplay.class);
+                nutritionPageDisplayIntent.putExtra(SERVINGSIZE, servingSizeString);
                 nutritionPageDisplayIntent.putExtra(CALORIES, calString);
                 nutritionPageDisplayIntent.putExtra(TOTALFAT, fatString);
                 nutritionPageDisplayIntent.putExtra(SATFAT, satFatString);

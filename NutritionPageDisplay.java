@@ -8,11 +8,13 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.StringReader;
 import java.util.Objects;
 
 public class NutritionPageDisplay extends AppCompatActivity {
 
     final String GRAMS = "g";
+    final String MILIGRAMS = "mg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -23,15 +25,17 @@ public class NutritionPageDisplay extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String calories = intent.getStringExtra(MainActivity.CALORIES) + GRAMS;
+        String servingSizeString = intent.getStringExtra(MainActivity.SERVINGSIZE);
+        String caloriesString = intent.getStringExtra(MainActivity.CALORIES) + GRAMS;
         String totalfatString = intent.getStringExtra(MainActivity.TOTALFAT) + GRAMS;
         String satfatString = intent.getStringExtra(MainActivity.SATFAT) + GRAMS;
-        String cholesterolString = intent.getStringExtra(MainActivity.CHOLESTEROL) + GRAMS;
-        String sodiumString = intent.getStringExtra(MainActivity.SODIUM) + GRAMS;
+        String cholesterolString = intent.getStringExtra(MainActivity.CHOLESTEROL) + MILIGRAMS;
+        String sodiumString = intent.getStringExtra(MainActivity.SODIUM) + MILIGRAMS;
         String totalCarbString = intent.getStringExtra(MainActivity.TOTALCARBOHYDRATES) + GRAMS;
         String dietaryFiberString = intent.getStringExtra(MainActivity.DIETARYFIBER) + GRAMS;
         String proteinString = intent.getStringExtra(MainActivity.PROTEIN) + GRAMS;
 
+        TextView servingSizeView = (TextView) findViewById(R.id.servingSizeView);
         TextView caloriesView = (TextView) findViewById(R.id.calorieView);
         TextView totalFatView = (TextView) findViewById(R.id.fatView);
         TextView satFatView = (TextView) findViewById(R.id.saturatedFatView);
@@ -42,7 +46,8 @@ public class NutritionPageDisplay extends AppCompatActivity {
         TextView proteinView = (TextView) findViewById(R.id.proteinView);
 
 
-        caloriesView.setText(calories);
+        servingSizeView.setText(servingSizeString);
+        caloriesView.setText(caloriesString);
         totalFatView.setText(totalfatString);
         satFatView.setText(satfatString);
         cholesterolView.setText(cholesterolString);
