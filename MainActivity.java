@@ -70,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_home:
                 Toast.makeText(this,"Home", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.nav_new_post:
+                Toast.makeText(this, "Post", Toast.LENGTH_SHORT.show();
+                break;
             case R.id.nav_find_friends:
                 Toast.makeText(this,"Find Friends", Toast.LENGTH_SHORT).show();
                 break;
