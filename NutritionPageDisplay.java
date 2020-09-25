@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.io.StringReader;
-import java.util.Objects;
-
 public class NutritionPageDisplay extends AppCompatActivity {
+
+    /*****************************
+     * final Constants for grams and milligrams
+     *
+     ******************************/
 
     final String GRAMS = "g";
     final String MILIGRAMS = "mg";
@@ -23,6 +23,11 @@ public class NutritionPageDisplay extends AppCompatActivity {
         setContentView(R.layout.activity_nutrition_page_display);
 
 
+        /**************************
+         * Get the intent being sent to this activity
+         * Initialize and declare strings to the numbers given by the user
+         * Initialize the textview
+         **************************/
 
         Intent intent = getIntent();
         String servingSizeString = intent.getStringExtra(MainActivity.SERVINGSIZE);
@@ -44,6 +49,12 @@ public class NutritionPageDisplay extends AppCompatActivity {
         TextView totalCarbohydratesView = (TextView) findViewById(R.id.carbView);
         TextView dietaryFiberView = (TextView) findViewById(R.id.fiberView);
         TextView proteinView = (TextView) findViewById(R.id.proteinView);
+
+
+        /*****************************
+         * Set the TextView to display the String numbers
+         *
+         ******************************/
 
 
         servingSizeView.setText(servingSizeString);

@@ -7,10 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
 {
+
+    /**
+     * Declare and Initialize static final variables
+     * as keys to the next activity.
+     */
+
+
     public static final String CALORIES = "com.example.cookingrecipeproject.CALORIES";
     public static final String TOTALFAT = "com.example.cookingrecipeproject.TOTALFAT";
     public static final String SATFAT = "com.example.cookingrecipeproject.SATFAT";
@@ -28,6 +34,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
 
+        /**
+         *  Initialize a button.
+         */
 
         Button editBtn = (Button) findViewById(R.id.enterBtn);
         editBtn.setOnClickListener(new View.OnClickListener()
@@ -35,6 +44,12 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+
+                /**
+                 * Declare and Initialize EditText
+                 * Set String variables to the number within the EditText
+                 */
+
                 EditText servingSizeNum = (EditText) findViewById(R.id.servingSizeNum);
                 String servingSizeString = servingSizeNum.getText().toString();
 
@@ -61,6 +76,11 @@ public class MainActivity extends AppCompatActivity
 
                 EditText proteinNum = (EditText) findViewById(R.id.proteinNum);
                 String proteinString = proteinNum.getText().toString();
+
+                /**
+                 * Declare and initialize intent
+                 * Send these keys and values to the next activity.
+                 */
 
                 Intent nutritionPageDisplayIntent = new Intent(getApplicationContext(), NutritionPageDisplay.class);
                 nutritionPageDisplayIntent.putExtra(SERVINGSIZE, servingSizeString);
