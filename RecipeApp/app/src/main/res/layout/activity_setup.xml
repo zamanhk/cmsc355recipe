@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".SetupActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/setup_profile"
+        android:layout_width="223dp"
+        android:layout_height="229dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="89dp"
+        android:layout_marginRight="89dp"
+        android:layout_marginBottom="495dp"
+        android:src="@drawable/profile">
+
+    </de.hdodenhof.circleimageview.CircleImageView>
+
+    <EditText
+        android:id="@+id/setup_fullname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/setup_profile"
+        android:layout_marginBottom="-88dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Full Name"
+        android:inputType="textMultiLine"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:background="@drawable/inputs"
+        android:padding="14dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/setup_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/setup_fullname"
+        android:layout_marginBottom="-62dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Username"
+        android:inputType="textMultiLine"
+        android:background="@drawable/inputs"
+        android:padding="14dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/setup_bio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/setup_username"
+        android:layout_marginBottom="-61dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Biography"
+        android:inputType="textMultiLine"
+        android:background="@drawable/inputs"
+        android:padding="14dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/setup_saving_button"
+        android:layout_width="125dp"
+        android:layout_height="70dp"
+        android:layout_alignBottom="@+id/setup_bio"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="139dp"
+        android:layout_marginRight="139dp"
+        android:layout_marginBottom="-110dp"
+        android:padding="14dp"
+        android:text="Save"
+        android:textStyle="bold" />
+
+</RelativeLayout>
