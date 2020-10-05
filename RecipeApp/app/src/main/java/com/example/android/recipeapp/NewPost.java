@@ -61,7 +61,7 @@ public class NewPost extends AppCompatActivity {
         addNutritionFacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nutritionIntent = new Intent(getApplicationContext(), NutritionPageDisplay.class);
+                Intent nutritionIntent = new Intent(getApplicationContext(), NutritionEdit.class);
                 startActivity(nutritionIntent);
             }
         });
