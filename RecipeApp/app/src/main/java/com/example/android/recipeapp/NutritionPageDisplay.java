@@ -30,6 +30,7 @@ public class NutritionPageDisplay extends AppCompatActivity {
          **************************/
 
         Intent intent = getIntent();
+        String servingSizeString = intent.getStringExtra(NutritionEdit.SERVINGSIZE);
         String caloriesString = intent.getStringExtra(NutritionEdit.CALORIES) + GRAMS;
         String totalfatString = intent.getStringExtra(NutritionEdit.TOTALFAT) + GRAMS;
         String satfatString = intent.getStringExtra(NutritionEdit.SATFAT) + GRAMS;

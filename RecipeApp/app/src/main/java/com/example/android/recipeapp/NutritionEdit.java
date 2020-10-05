@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.android.recipeapp.R;
-
 public class NutritionEdit extends AppCompatActivity
 {
 
@@ -19,15 +17,15 @@ public class NutritionEdit extends AppCompatActivity
      */
 
 
-    public static final String CALORIES = "com.example.cookingrecipeproject.CALORIES";
-    public static final String TOTALFAT = "com.example.cookingrecipeproject.TOTALFAT";
-    public static final String SATFAT = "com.example.cookingrecipeproject.SATFAT";
-    public static final String CHOLESTEROL = "com.example.cookingrecipeproject.CHOLESTEROL";
-    public static final String SODIUM = "com.example.cookingrecipeproject.SODIUM";
-    public static final String TOTALCARBOHYDRATES = "com.example.cookingrecipeproject.TOTALCARBOHYDRATE";
-    public static final String DIETARYFIBER = "com.example.cookingrecipeproject.DIETARYFIBER";
-    public static final String PROTEIN = "com.example.cookingrecipeproject.PROTEIN";
-    public static final String SERVINGSIZE = "com.example.cookingrecipeproject.SERVINGSIZE";
+    public static final String CALORIES = "com.example.android.recipeapp.CALORIES";
+    public static final String TOTALFAT = "com.example.android.recipeapp.TOTALFAT";
+    public static final String SATFAT = "com.example.android.recipeapp.SATFAT";
+    public static final String CHOLESTEROL = "com.example.android.recipeapp.CHOLESTEROL";
+    public static final String SODIUM = "com.example.android.recipeapp.SODIUM";
+    public static final String TOTALCARBOHYDRATES = "com.example.android.recipeapp.TOTALCARBOHYDRATE";
+    public static final String DIETARYFIBER = "com.example.android.recipeapp.DIETARYFIBER";
+    public static final String PROTEIN = "com.example.android.recipeapp.PROTEIN";
+    public static final String SERVINGSIZE = "com.example.android.recipeapp.SERVINGSIZE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
