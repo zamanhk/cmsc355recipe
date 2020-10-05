@@ -21,7 +21,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".filterSearch" />
         <activity android:name=".AlyciaActivity" />
-        <activity android:name=".MainActivity" >
+        <activity android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
