@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.recipeapp" >
+    package="com.example.android.recipeapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,9 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".AddIngredients" >
-        </activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".NutritionPageDisplay" />
+        <activity android:name=".AddIngredients" />
         <activity android:name=".AddInstructions" />
         <activity android:name=".NewPost" />
         <activity android:name=".SetupActivity" />
@@ -23,7 +24,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

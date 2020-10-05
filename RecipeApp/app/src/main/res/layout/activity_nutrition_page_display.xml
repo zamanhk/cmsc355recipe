@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NutritionPageDisplay">
+
+    <TextView
+        android:id="@+id/nutritionLabel"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:text="nutrition_facts"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.072" />
+
+    <TextView
+        android:id="@+id/calorieLabel"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_marginStart="8dp"
+        android:text="calories"
+        android:textAlignment="viewStart"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nutritionLabel"
+        app:layout_constraintVertical_bias="0.168" />
+
+    <TextView
+        android:id="@+id/calorieView"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_marginEnd="8dp"
+        android:text="tempcalnum"
+        android:textAlignment="viewEnd"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/calorieLabel"
+        app:layout_constraintTop_toBottomOf="@+id/nutritionLabel"
+        app:layout_constraintVertical_bias="0.168" />
+
+    <TextView
+        android:id="@+id/totalFatLabel"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="total_fat"
+        android:textAlignment="viewStart"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calorieLabel" />
+
+    <TextView
+        android:id="@+id/proteinLabel"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="protein"
+        android:textAlignment="viewStart"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dietaryFiberLabel" />
+
+    <TextView
+        android:id="@+id/fatView"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="totalfatnum"
+        android:textAlignment="viewEnd"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintStart_toEndOf="@+id/totalFatLabel"
+        app:layout_constraintTop_toBottomOf="@+id/calorieLabel" />
+
+    <TextView
+        android:id="@+id/proteinView"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="proteinnum"
+        android:textAlignment="viewEnd"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fiberView" />
+
+    <TextView
+        android:id="@+id/carbLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="total_carbohydrates"
+        android:textAlignment="viewStart"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sodiumLabel" />
+
+    <TextView
+        android:id="@+id/carbView"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="totalcarbnum"
+        android:textAlignment="viewEnd"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sodiumView" />
+
+    <TextView
+        android:id="@+id/saturatedFatView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="satfatnum"
+        android:textAlignment="viewEnd"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalFatLabel" />
+
+    <TextView
+        android:id="@+id/cholesterolLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="cholesterol"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/satFatLabel" />
+
+    <TextView
+        android:id="@+id/sodiumLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="sodium"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cholesterolLabel" />
+
+    <TextView
+        android:id="@+id/sodiumView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="sodiumnum"
+        android:textAlignment="viewEnd"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cholesterolLabel" />
+
+    <TextView
+        android:id="@+id/cholesterolView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="cholesterolnum"
+        android:textAlignment="viewEnd"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saturatedFatView" />
+
+    <TextView
+        android:id="@+id/satFatLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="saturated_fat"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fatView" />
+
+    <TextView
+        android:id="@+id/dietaryFiberLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="dietary_fiber"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carbLabel" />
+
+    <TextView
+        android:id="@+id/fiberView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="dietaryfibernum"
+        android:textAlignment="viewEnd"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carbView" />
+
+    <TextView
+        android:id="@+id/servingSizeLabel"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="28dp"
+        android:text="serving_size"
+        android:textAlignment="viewStart"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/servingSizeView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nutritionLabel" />
+
+    <TextView
+        android:id="@+id/servingSizeView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="8dp"
+        android:text="servingsizenum"
+        android:textAlignment="viewEnd"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nutritionLabel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
