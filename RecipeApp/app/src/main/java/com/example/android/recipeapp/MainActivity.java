@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
+    private Button addButton;
     private FirebaseAuth mAuth;
     private DatabaseReference userRef;
 
@@ -40,6 +42,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /******************************************************
+        *REMOVE AFTER IMPORTING JAMAR'S NAV BAR
+         *****************************************************/
+
+        addButton = findViewById(R.id.newPostButton);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newPostIntent = new Intent(getApplicationContext(), NewPost.class);
+                startActivity(newPostIntent);
+
+            }
+        });
 
         mAuth =FirebaseAuth.getInstance();
         userRef = FirebaseDatabase.getInstance().getReference().child("Users");
