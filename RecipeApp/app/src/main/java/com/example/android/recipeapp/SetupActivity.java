@@ -1,10 +1,12 @@
 package com.example.android.recipeapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,6 +19,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.HashMap;
 
@@ -31,8 +38,10 @@ public class SetupActivity extends AppCompatActivity
 
     private FirebaseAuth mAuth;
     private DatabaseReference userRef;
+    private StorageReference userProfileImageRef;
 
     String currentUserId;
+    final static int GALLERYPIC = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,6 +52,7 @@ public class SetupActivity extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
         currentUserId = mAuth.getCurrentUser().getUid();
         userRef = FirebaseDatabase.getInstance().getReference().child(currentUserId);
+        userProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
 
         userName = (EditText) findViewById(R.id.setup_username);
         fullName = (EditText) findViewById(R.id.setup_fullname);
@@ -58,6 +68,88 @@ public class SetupActivity extends AppCompatActivity
                 SaveAccountSetupInformation();
             }
         });
+
+        profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent galleryIntent = new Intent();
+                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+                galleryIntent.setType("image/*");
+                startActivityForResult(galleryIntent,GALLERYPIC);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == GALLERYPIC && resultCode == RESULT_OK && data != null)
+        {
+            Uri image = data.getData();
+            CropImage.activity()
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                    .setAspectRatio(1,1)
+                    .start(this);
+        }
+        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
+        {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if(resultCode == RESULT_OK)
+            {
+                loadingBar.setTitle("Profile Image");
+                loadingBar.setMessage("Please wait while we are uploading your profile image");
+                loadingBar.show();
+                loadingBar.setCanceledOnTouchOutside(true);
+
+                Uri resultUri = result.getUri();
+
+                StorageReference filePath = userProfileImageRef.child(currentUserId + ".jpg");
+
+                filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task)
+                    {
+                        if(task.isSuccessful())
+                        {
+                            Toast.makeText(SetupActivity.this, "Image stored to Firebase successfully",Toast.LENGTH_SHORT).show();
+
+                            final String downloadUrl = task.getResult().getStorage().getDownloadUrl().toString();
+
+                            userRef.child("Profile Image").setValue(downloadUrl)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task)
+                                        {
+                                            if(task.isSuccessful())
+                                            {
+                                                Intent setupToSetup = new Intent(SetupActivity.this, SetupActivity.class);
+                                                startActivity(setupToSetup);
+
+                                                Toast.makeText(SetupActivity.   this, "Profile image stored to firebase: "  ,Toast.LENGTH_SHORT).show();
+                                                loadingBar.dismiss();
+                                            }
+                                            else
+                                            {
+                                                String message = task.getException().getMessage();
+                                                Toast.makeText(SetupActivity.   this, "Error: " + message ,Toast.LENGTH_SHORT).show();
+                                                loadingBar.dismiss();
+                                            }
+                                        }
+                                    });
+                        }
+
+                    }
+                });
+            }
+        }
+        else
+        {
+            Toast.makeText(SetupActivity.   this, "Error: Image could not have been cropped ",Toast.LENGTH_SHORT).show();
+            loadingBar.dismiss();
+        }
+
     }
 
     private void SaveAccountSetupInformation()
