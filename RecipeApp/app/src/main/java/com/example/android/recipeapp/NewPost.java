@@ -71,6 +71,8 @@ public class NewPost extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //post onto profile??
+                //need to make screen where pages are added all together
+                //maybe updated screen?
             }
         });
 
