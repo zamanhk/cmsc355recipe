@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Commit 1
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private RecyclerView postList;
