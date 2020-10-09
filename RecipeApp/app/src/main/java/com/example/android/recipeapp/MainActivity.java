@@ -55,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
          * This is commit two for the midterm exam.
          */
 
+        /**
+         * This is commit three for the midterm exam.
+         */
+
         addButton = findViewById(R.id.newPostButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
