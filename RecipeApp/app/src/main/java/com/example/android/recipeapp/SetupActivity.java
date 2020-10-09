@@ -58,7 +58,7 @@ public class SetupActivity extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
         currentUserId = mAuth.getCurrentUser().getUid();
         userRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
-        userProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
+        userProfileImageRef = FirebaseStorage.getInstance().getReference().child("ProfileImages");
 
         userName = (EditText) findViewById(R.id.setup_username);
         fullName = (EditText) findViewById(R.id.setup_fullname);
@@ -92,8 +92,16 @@ public class SetupActivity extends AppCompatActivity
             {
                 if(dataSnapshot.exists())
                 {
-                    String image = dataSnapshot.child("ProfileImage").getValue().toString();
-                    Picasso.get().load(image).placeholder(R.drawable.profile).into(profileImage);
+                    if(dataSnapshot.hasChild("ProfileImage"))
+                    {
+                        String image = dataSnapshot.child("ProfileImage").getValue().toString();
+                        Picasso.get().load(image).placeholder(R.drawable.profile).into(profileImage);
+
+                    }
+                    else
+                    {
+                        Toast.makeText(SetupActivity.this, "Please choose a profile image", Toast.LENGTH_SHORT).show();
+                    }
 
                 }
             }
