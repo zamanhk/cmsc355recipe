@@ -212,7 +212,7 @@ public class SetupActivity extends AppCompatActivity
 
             HashMap userMap  = new HashMap();
             userMap.put("Username", username);
-            userMap.put("Full Name", fullname);
+            userMap.put("FullName", fullname);
             userMap.put("Biography", bio);
             userRef.updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
                 @Override

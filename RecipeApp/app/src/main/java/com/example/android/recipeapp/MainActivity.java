@@ -93,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
             {
                 if(dataSnapshot.exists())
                 {
-                    if(dataSnapshot.hasChild("Full Name"))
+                    if(dataSnapshot.hasChild("FullName"))
                     {
-                        String fullName = dataSnapshot.child("Full Name").getValue().toString();
+                        String fullName = dataSnapshot.child("FullName").getValue().toString();
                         navProfileUsername.setText(fullName);
 
                     }
