@@ -37,9 +37,19 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginEnd="9dp"
-            android:layout_marginRight="9dp"
+            android:layout_marginEnd="157dp"
+            android:layout_marginRight="157dp"
             android:text="+" />
+
+        <Button
+            android:id="@+id/searchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="19dp"
+            android:layout_marginRight="19dp"
+            android:text="Search" />
 
     </RelativeLayout>
 
