@@ -27,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
@@ -112,19 +114,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+
                     if (dataSnapshot.hasChild("FullName")) {
-                        String fullName = dataSnapshot.child("FullName").getValue().toString();
+                        String fullName = Objects.requireNonNull(dataSnapshot.child("FullName").getValue()).toString();
                         navProfileUsername.setText(fullName);
 
                     }
+
                     if (dataSnapshot.hasChild("ProfileImage")) {
-                        String image = dataSnapshot.child("ProfileImage").getValue().toString();
+                        String image = Objects.requireNonNull(dataSnapshot.child("ProfileImage").getValue()).toString();
                         Picasso.get().load(image).placeholder(R.drawable.profile).into(navProfileImage);
 
-                    } else {
-                        Toast.makeText(MainActivity.this, "Profile name and image does not exist", Toast.LENGTH_SHORT).show();
                     }
 
+                }
+
+                else {
+                    Toast.makeText(MainActivity.this,
+                            "Profile name and image does not exist",
+                            Toast.LENGTH_SHORT).show();
                 }
 
             }
