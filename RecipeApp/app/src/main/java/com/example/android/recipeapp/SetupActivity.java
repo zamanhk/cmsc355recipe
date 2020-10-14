@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.PictureInPictureParams;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,11 +19,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -53,7 +58,7 @@ public class SetupActivity extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
         currentUserId = mAuth.getCurrentUser().getUid();
         userRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
-        userProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
+        userProfileImageRef = FirebaseStorage.getInstance().getReference().child("ProfileImages");
 
         userName = (EditText) findViewById(R.id.setup_username);
         fullName = (EditText) findViewById(R.id.setup_fullname);
@@ -78,6 +83,32 @@ public class SetupActivity extends AppCompatActivity
                 galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
                 galleryIntent.setType("image/*");
                 startActivityForResult(galleryIntent,GALLERYPIC);
+            }
+        });
+
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                if(dataSnapshot.exists())
+                {
+                    if(dataSnapshot.hasChild("ProfileImage"))
+                    {
+                        String image = dataSnapshot.child("ProfileImage").getValue().toString();
+                        Picasso.get().load(image).placeholder(R.drawable.profile).into(profileImage);
+
+                    }
+                    else
+                    {
+                        Toast.makeText(SetupActivity.this, "Please choose a profile image", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }
@@ -181,7 +212,7 @@ public class SetupActivity extends AppCompatActivity
 
             HashMap userMap  = new HashMap();
             userMap.put("Username", username);
-            userMap.put("Full Name", fullname);
+            userMap.put("FullName", fullname);
             userMap.put("Biography", bio);
             userRef.updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
                 @Override
