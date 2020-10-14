@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView navProfileUsername;
 
     private Button addButton;
+    private Button searchButton;
     private FirebaseAuth mAuth;
     private DatabaseReference userRef;
 
@@ -68,6 +69,25 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+        /**
+         *  Search Bar Button
+         */
+
+        searchButton = findViewById(R.id.searchBtn);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent searchPageIntent = new Intent(getApplicationContext(), SearchPage.class);
+                startActivity(searchPageIntent);
+            }
+        });
+
+
+
+
 
         mAuth =FirebaseAuth.getInstance();
         currentUserId = mAuth.getCurrentUser().getUid();
