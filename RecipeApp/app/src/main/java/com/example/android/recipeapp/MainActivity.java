@@ -87,26 +87,21 @@ public class MainActivity extends AppCompatActivity {
         navProfileImage = (CircleImageView) findViewById(R.id.nav_profile_image);
         navProfileUsername = (TextView) findViewById(R.id.nav_user_full_name);
 
-        userRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
+        userRef.child(currentUserId);
+        userRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                if(dataSnapshot.exists())
-                {
-                    if(dataSnapshot.hasChild("FullName"))
-                    {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    if (dataSnapshot.hasChild("FullName")) {
                         String fullName = dataSnapshot.child("FullName").getValue().toString();
                         navProfileUsername.setText(fullName);
 
                     }
-                    if(dataSnapshot.hasChild("ProfileImage"))
-                    {
+                    if (dataSnapshot.hasChild("ProfileImage")) {
                         String image = dataSnapshot.child("ProfileImage").getValue().toString();
                         Picasso.get().load(image).placeholder(R.drawable.profile).into(navProfileImage);
 
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(MainActivity.this, "Profile name and image does not exist", Toast.LENGTH_SHORT).show();
                     }
 
@@ -119,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
