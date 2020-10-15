@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 /*******************************************************************************************
  * The new post page when button is clicked on main screen.
  *****************************************NOTES*********************************************
@@ -77,4 +81,20 @@ public class NewPost extends AppCompatActivity {
         });
 
     }
+
+
+    private void postRecipe ()
+    {
+        // Get values from other activities
+        // Initialize the variables to the values
+
+        TextView nameView = findViewById(R.id.editTextTextMultiLine);
+
+        String name = nameView.getText().toString();
+        String ingredients = getIntent().getStringExtra("ingredients");
+        String instructions = getIntent().getStringExtra("instructions");
+        String description;
+
+    }
+
 }
