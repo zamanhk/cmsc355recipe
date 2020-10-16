@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -18,10 +19,14 @@ import org.w3c.dom.Text;
  *
  *******************************************************************************************/
 
-public class NewPost extends AppCompatActivity {
+public class NewPost extends AppCompatActivity
+{
+    private static final int GALLERYPIC = 1;
+    private ImageButton selectImage;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_post);
 
@@ -30,7 +35,16 @@ public class NewPost extends AppCompatActivity {
          * Button to upload an image (includes camera/gallery option)
          *******************************************************************************************/
 
-        //Button imageButton = findViewById(R.id.imageButton);
+         selectImage = findViewById(R.id.imageButton);
+         selectImage.setOnClickListener(new View.OnClickListener()
+         {
+             @Override
+             public void onClick(View v)
+             {
+                 OpenGallery();
+             }
+         });
+
 
         /*******************************************************************************************
          * Button to navigate to add ingredients page
@@ -70,6 +84,7 @@ public class NewPost extends AppCompatActivity {
             }
         });
 
+
         Button postButton = findViewById(R.id.postButton);
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +95,14 @@ public class NewPost extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void OpenGallery()
+    {
+        Intent galleryIntent = new Intent();
+        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+        galleryIntent.setType("image/*");
+        startActivityForResult(galleryIntent,GALLERYPIC);
     }
 
 
