@@ -21,6 +21,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -50,6 +54,10 @@ public class NewPost extends AppCompatActivity
     private StorageReference postImageReference;
     private Uri image;
 
+    private FirebaseDatabase mFirebaseDatabase;
+    private FirebaseAuth mAuth;
+    private DatabaseReference myRef;
+
     private static final int GALLERYPIC = 1;
 
     @Override
@@ -65,6 +73,12 @@ public class NewPost extends AppCompatActivity
         addNutritionFacts = (Button) findViewById(R.id.nutritionButton);
         postButton = (Button) findViewById(R.id.postButton);
         captionBox = (EditText) findViewById(R.id.descriptionBox);
+
+        mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        final String userID = user.getUid();
+        myRef = mFirebaseDatabase.getReference().child("Users").child(userID);
 
 
         /*******************************************************************************************
@@ -87,6 +101,7 @@ public class NewPost extends AppCompatActivity
             public void onClick(View v)
             {
                 ValidatePostInfo();
+                postRecipe(userID);
             }
         });
         /*******************************************************************************************
@@ -202,17 +217,24 @@ public class NewPost extends AppCompatActivity
         }
     }
 
-    private void postRecipe ()
+    private void postRecipe (String userID)
     {
         // Get values from other activities
         // Initialize the variables to the values
+        EditText foodName = (EditText) findViewById(R.id.editTextTextMultiLine);
 
-        TextView nameView = findViewById(R.id.editTextTextMultiLine);
+        String recipeName = foodName.getText().toString();
+        if (!recipeName.equals(""))
+        {
+            myRef.child("recipes").child(recipeName).setValue("true");
+            Toast.makeText(NewPost.this, "Posting " + recipeName + ".", Toast.LENGTH_LONG).show();
 
-        String name = nameView.getText().toString();
+            foodName.setText(""); // This will reset the text.
+        }
+
         String ingredients = getIntent().getStringExtra("ingredients");
         String instructions = getIntent().getStringExtra("instructions");
-        String description;
+        String description = captionBox.toString();
 
     }
 
