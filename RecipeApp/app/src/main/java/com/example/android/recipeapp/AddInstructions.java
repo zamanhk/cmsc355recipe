@@ -1,6 +1,7 @@
 package com.example.android.recipeapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +16,12 @@ public class AddInstructions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_instructions);
 
-        Button saveInstructions = findViewById(R.id.saveButton);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        Button saveInstructions = findViewById(R.id.saveButton);
         saveInstructions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
