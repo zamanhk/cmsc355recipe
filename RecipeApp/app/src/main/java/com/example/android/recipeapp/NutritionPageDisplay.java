@@ -73,5 +73,28 @@ public class NutritionPageDisplay extends AppCompatActivity {
 
     }
 
+    /**
+     * private void postRecipe (String userID)
+     *     {
+     *         // Get values from other activities
+     *         // Initialize the variables to the values
+     *         EditText foodName = (EditText) findViewById(R.id.RecipeName);
+     *
+     *         String recipeName = foodName.getText().toString();
+     *         if (!recipeName.equals(""))
+     *         {
+     *             myRef.child("recipes").child(recipeName).setValue("true");
+     *             Toast.makeText(NewPost.this, "Posting " + recipeName + ".", Toast.LENGTH_LONG).show();
+     *
+     *             foodName.setText(""); // This will reset the text.
+     *         }
+     *
+     *         String ingredients = getIntent().getStringExtra("ingredients");
+     *         String instructions = getIntent().getStringExtra("instructions");
+     *         String description = captionBox.toString();
+     *
+     *     }
+     */
+
 
 }

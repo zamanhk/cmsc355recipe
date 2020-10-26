@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.TintTypedArray;
 
 import android.content.Intent;
 import java.text.SimpleDateFormat;
@@ -46,12 +47,10 @@ import java.util.Calendar;
 public class NewPost extends AppCompatActivity
 {
     private ImageButton selectImage;
-    private Button addIngredientsButton,addInstructionsButton,addNutritionFacts,postButton, backButton;
-    private EditText captionBox, recipeName;
-    private Button addIngredientsButton,addInstructionsButton,addNutritionFacts,postButton;
+    private Button ingredientsBtn;
     private EditText captionBox, recipeNameBox;
     private String description;
-    private String saveCurrentDate, saveCurrentTime, postRandomName, recipeName;
+    private String saveCurrentDate, saveCurrentTime, postRandomName;
 
     private StorageReference postImageReference;
     private Uri image;
@@ -70,11 +69,9 @@ public class NewPost extends AppCompatActivity
 
         postImageReference = FirebaseStorage.getInstance().getReference().child("Post Images");
         selectImage = (ImageButton) findViewById(R.id.imageButton);
-        addIngredientsButton = (Button) findViewById(R.id.ingredientsButton);
-        addInstructionsButton = (Button) findViewById(R.id.instructionsButton);
-        addNutritionFacts = (Button) findViewById(R.id.nutritionButton);
-        postButton = (Button) findViewById(R.id.postButton);
+        ingredientsBtn = findViewById(R.id.ingredientsButton);
         captionBox = (EditText) findViewById(R.id.descriptionBox);
+        recipeNameBox = findViewById(R.id.RecipeName);
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -95,51 +92,16 @@ public class NewPost extends AppCompatActivity
              }
          });
 
-         /*******************************************************************************************
-        * Button to add the post to the Firebase and also the home screen
-         *******************************************************************************************/
-        postButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                ValidatePostInfo();
-                postRecipe(userID);
-            }
-        });
         /*******************************************************************************************
          * Button to navigate to add ingredients page
          *******************************************************************************************/
-        addIngredientsButton.setOnClickListener(new View.OnClickListener() {
+        ingredientsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ingredientsIntent = new Intent(getApplicationContext(), AddIngredients.class);
-                startActivity(ingredientsIntent);
+
+                ValidatePostInfo();
             }
         });
-
-        /*******************************************************************************************
-         * Button to navigate to add instructions page
-         *******************************************************************************************/
-
-        addInstructionsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent instructionsIntent = new Intent(getApplicationContext(), AddInstructions.class);
-                startActivity(instructionsIntent);
-            }
-        });
-
-        /*******************************************************************************************
-         * Button to navigate to add nutrition facts page
-         *******************************************************************************************/
-        addNutritionFacts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent nutritionIntent = new Intent(getApplicationContext(), NutritionEdit.class);
-                startActivity(nutritionIntent);
-            }
-        });
-
 
     }
 
@@ -148,6 +110,7 @@ public class NewPost extends AppCompatActivity
     private void ValidatePostInfo()
     {
         description = captionBox.getText().toString();
+        String recipeName = recipeNameBox.getText().toString();
         if(image == null)
         {
             Toast.makeText(NewPost.   this, "Please select an image for your post ",Toast.LENGTH_SHORT).show();
@@ -156,10 +119,20 @@ public class NewPost extends AppCompatActivity
         {
             Toast.makeText(NewPost.   this, "Please write a description of your recipe ",Toast.LENGTH_SHORT).show();
         }
+        else if (TextUtils.isEmpty(recipeName))
+        {
+            Toast.makeText(NewPost.this, "Please Enter a Title of your recipe", Toast.LENGTH_SHORT).show();
+        }
         else
         {
-            ImagetoFirebase();
-            SendUsertoMain();
+            Intent intent = new Intent(NewPost.this, AddIngredients.class);
+            intent.putExtra("recipeName", recipeName);
+            intent.putExtra("description",description);
+            intent.putExtra("image", image.toString()); //This is the String of the Uri image. Remember to convert to Uri at the end
+            startActivity(intent);
+
+            //ImagetoFirebase();
+            //SendUsertoMain();
         }
 
     }
@@ -202,6 +175,7 @@ public class NewPost extends AppCompatActivity
         });
     }
 
+
     private void OpenGallery()
     {
         Intent galleryIntent = new Intent();
@@ -220,27 +194,6 @@ public class NewPost extends AppCompatActivity
             selectImage.setImageURI(image);
 
         }
-    }
-
-    private void postRecipe (String userID)
-    {
-        // Get values from other activities
-        // Initialize the variables to the values
-        EditText foodName = (EditText) findViewById(R.id.RecipeName);
-
-        String recipeName = foodName.getText().toString();
-        if (!recipeName.equals(""))
-        {
-            myRef.child("recipes").child(recipeName).setValue("true");
-            Toast.makeText(NewPost.this, "Posting " + recipeName + ".", Toast.LENGTH_LONG).show();
-
-            foodName.setText(""); // This will reset the text.
-        }
-
-        String ingredients = getIntent().getStringExtra("ingredients");
-        String instructions = getIntent().getStringExtra("instructions");
-        String description = captionBox.toString();
-
     }
 
 }

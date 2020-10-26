@@ -21,10 +21,11 @@
         android:id="@+id/instructionsButton"
         android:layout_width="371dp"
         android:layout_height="40dp"
+        android:layout_marginTop="40dp"
         android:text="Add Instructions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="621dp" />
+        app:layout_constraintTop_toBottomOf="@+id/ingredientsBox" />
 
     <TextView
         android:id="@+id/textView2"
@@ -40,28 +41,26 @@
 
     <EditText
         android:id="@+id/ingredientsBox"
-        android:layout_width="403dp"
-        android:layout_height="351dp"
+        android:layout_width="363dp"
+        android:layout_height="255dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2"
-        app:layout_constraintVertical_bias="0.413" />
+        app:layout_constraintVertical_bias="0.351" />
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="184dp"
-        android:layout_height="33dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="Enter your Ingredients:"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toTopOf="@+id/ingredientsBox"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <include

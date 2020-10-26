@@ -46,7 +46,7 @@
         app:srcCompat="@android:drawable/ic_menu_gallery" />
 
     <Button
-        android:id="@+id/postButton"
+        android:id="@+id/ingredientsButton"
         android:layout_width="371dp"
         android:layout_height="54dp"
         android:layout_marginBottom="208dp"
@@ -65,7 +65,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/postButton"
+        app:layout_constraintBottom_toTopOf="@+id/ingredientsButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent" />
