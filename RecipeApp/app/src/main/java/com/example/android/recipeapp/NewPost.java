@@ -46,7 +46,7 @@ import java.util.Calendar;
 public class NewPost extends AppCompatActivity
 {
     private ImageButton selectImage;
-    private Button addIngredientsButton,addInstructionsButton,addNutritionFacts,postButton;
+    private Button addIngredientsButton,addInstructionsButton,addNutritionFacts,postButton, backButton;
     private EditText captionBox;
     private String description;
     private String saveCurrentDate, saveCurrentTime, postRandomName;
@@ -73,6 +73,7 @@ public class NewPost extends AppCompatActivity
         addNutritionFacts = (Button) findViewById(R.id.nutritionButton);
         postButton = (Button) findViewById(R.id.postButton);
         captionBox = (EditText) findViewById(R.id.descriptionBox);
+        backButton = (Button) findViewById (R.id.Backbutton);
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -135,6 +136,14 @@ public class NewPost extends AppCompatActivity
             public void onClick(View v) {
                 Intent nutritionIntent = new Intent(getApplicationContext(), NutritionEdit.class);
                 startActivity(nutritionIntent);
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent backIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(backIntent);
             }
         });
 

@@ -59,13 +59,13 @@
 
     <Button
         android:id="@+id/postButton"
-        android:layout_width="382dp"
-        android:layout_height="50dp"
+        android:layout_width="184dp"
+        android:layout_height="54dp"
         android:layout_marginBottom="16dp"
         android:text="Post"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintHorizontal_bias="0.929"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -130,6 +130,18 @@
         app:layout_constraintStart_toEndOf="@+id/imageButton"
         app:layout_constraintTop_toBottomOf="@+id/divider"
         app:layout_constraintVertical_bias="0.548" />
+
+    <Button
+        android:id="@+id/Backbutton"
+        android:layout_width="184dp"
+        android:layout_height="53dp"
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/postButton"
+        app:layout_constraintHorizontal_bias="0.592"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionBox"
+        app:layout_constraintVertical_bias="0.838" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
