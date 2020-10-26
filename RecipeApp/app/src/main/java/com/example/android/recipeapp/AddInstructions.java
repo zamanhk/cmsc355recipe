@@ -21,8 +21,8 @@ public class AddInstructions extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        Button saveInstructions = findViewById(R.id.saveButton);
-        saveInstructions.setOnClickListener(new View.OnClickListener() {
+        Button addNutrition = findViewById(R.id.nutritionButton);
+        addNutrition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

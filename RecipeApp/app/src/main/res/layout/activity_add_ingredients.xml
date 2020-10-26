@@ -17,6 +17,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/instructionsButton"
+        android:layout_width="371dp"
+        android:layout_height="40dp"
+        android:text="Add Instructions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="621dp" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="111dp"
@@ -53,16 +62,6 @@
         app:layout_constraintBottom_toTopOf="@+id/ingredientsBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="380dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="72dp"
-        android:text="Save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <include

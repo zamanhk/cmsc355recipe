@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -46,10 +47,10 @@ import java.util.Calendar;
 public class NewPost extends AppCompatActivity
 {
     private ImageButton selectImage;
-    private Button addIngredientsButton,addInstructionsButton,addNutritionFacts,postButton, backButton;
-    private EditText captionBox;
+    private Button addIngredientsButton,addInstructionsButton,addNutritionFacts,postButton;
+    private EditText captionBox, recipeNameBox;
     private String description;
-    private String saveCurrentDate, saveCurrentTime, postRandomName;
+    private String saveCurrentDate, saveCurrentTime, postRandomName, recipeName;
 
     private StorageReference postImageReference;
     private Uri image;
@@ -68,7 +69,6 @@ public class NewPost extends AppCompatActivity
 
         postImageReference = FirebaseStorage.getInstance().getReference().child("Post Images");
         selectImage = (ImageButton) findViewById(R.id.imageButton);
-        addIngredientsButton = (Button) findViewById(R.id.ingredientsButton);
         addInstructionsButton = (Button) findViewById(R.id.instructionsButton);
         addNutritionFacts = (Button) findViewById(R.id.nutritionButton);
         postButton = (Button) findViewById(R.id.postButton);
@@ -140,6 +140,23 @@ public class NewPost extends AppCompatActivity
 
 
     }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState)
+    {
+        super.onSaveInstanceState(outState);
+        recipeNameBox= findViewById(R.id.editTextTextMultiLine);
+
+        outState.putString("recipeName",  recipeNameBox.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState)
+    {
+        super.onRestoreInstanceState(savedInstanceState);
+        recipeNameBox.setText(savedInstanceState.getString("recipeName"));
+    }
+
 
     private void ValidatePostInfo()
     {
@@ -222,15 +239,15 @@ public class NewPost extends AppCompatActivity
     {
         // Get values from other activities
         // Initialize the variables to the values
-        EditText foodName = (EditText) findViewById(R.id.editTextTextMultiLine);
+        recipeNameBox = findViewById(R.id.editTextTextMultiLine);
 
-        String recipeName = foodName.getText().toString();
+        recipeName = recipeNameBox.getText().toString();
         if (!recipeName.equals(""))
         {
             myRef.child("recipes").child(recipeName).setValue("true");
             Toast.makeText(NewPost.this, "Posting " + recipeName + ".", Toast.LENGTH_LONG).show();
 
-            foodName.setText(""); // This will reset the text.
+            recipeNameBox.setText(""); // This will reset the text.
         }
 
         String ingredients = getIntent().getStringExtra("ingredients");

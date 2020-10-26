@@ -21,7 +21,7 @@
         <activity android:name=".AddIngredients"
             android:parentActivityName=".NewPost"/>
         <activity android:name=".AddInstructions"
-            android:parentActivityName=".NewPost"/>
+            android:parentActivityName=".AddIngredients"/>
         <activity android:name=".NewPost" />
         <activity android:name=".SetupActivity" />
         <activity android:name=".LoginActivity">
