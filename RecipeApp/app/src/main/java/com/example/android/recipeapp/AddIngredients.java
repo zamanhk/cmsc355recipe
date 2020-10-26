@@ -23,6 +23,15 @@ public class AddIngredients extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        Button backButton = findViewById(R.id.Backbutton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent backToNewPost = new Intent (AddIngredients.this, NewPost.class);
+                startActivity(backToNewPost);
+            }
+        });
 
         Button saveIngredients = findViewById(R.id.saveButton);
         saveIngredients.setOnClickListener(new View.OnClickListener() {

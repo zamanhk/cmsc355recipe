@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class NutritionPageDisplay extends AppCompatActivity {
@@ -15,6 +17,7 @@ public class NutritionPageDisplay extends AppCompatActivity {
 
     final String GRAMS = "g";
     final String MILIGRAMS = "mg";
+    private Button backButton, postButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -23,6 +26,15 @@ public class NutritionPageDisplay extends AppCompatActivity {
         setContentView(R.layout.activity_nutrition_page_display);
 
 
+        backButton = findViewById(R.id.Backbutton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent backToNutrition = new Intent(getApplicationContext(), NutritionEdit.class);
+                startActivity(backToNutrition);
+
+            }
+        });
         /**************************
          * Get the intent being sent to this activity
          * Initialize and declare strings to the numbers given by the user

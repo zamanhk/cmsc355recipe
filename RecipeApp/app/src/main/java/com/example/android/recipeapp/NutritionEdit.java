@@ -16,7 +16,6 @@ public class NutritionEdit extends AppCompatActivity
      * as keys to the next activity.
      */
 
-
     public static final String CALORIES = "com.example.android.recipeapp.CALORIES";
     public static final String TOTALFAT = "com.example.android.recipeapp.TOTALFAT";
     public static final String SATFAT = "com.example.android.recipeapp.SATFAT";
@@ -37,6 +36,16 @@ public class NutritionEdit extends AppCompatActivity
         /**
          *  Initialize a button.
          */
+
+        Button backButton = (Button) findViewById(R.id.Backbutton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent backToPost = new Intent (NutritionEdit.this, NewPost.class);
+                startActivity(backToPost);
+            }
+        });
 
         Button editBtn = (Button) findViewById(R.id.enterBtn);
         editBtn.setOnClickListener(new View.OnClickListener()
