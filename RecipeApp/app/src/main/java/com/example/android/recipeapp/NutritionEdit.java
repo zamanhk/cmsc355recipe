@@ -40,36 +40,42 @@ public class NutritionEdit extends AppCompatActivity
             public void onClick(View view)
             {
 
+                String recipeName = getIntent().getStringExtra("recipeName");
+                String description = getIntent().getStringExtra("description");
+                String image = getIntent().getStringExtra("image"); // This is the Uri String.  Remember to convert to Uri at the end
+                String ingredients = getIntent().getStringExtra("ingredients");
+                String instructions = getIntent().getStringExtra("instructions");
+
                 /**
                  * Declare and Initialize EditText
                  * Set String variables to the number within the EditText
                  */
 
-                EditText servingSizeNum = (EditText) findViewById(R.id.servingSizeNum);
+                EditText servingSizeNum = findViewById(R.id.servingSizeNum);
                 String servingSizeString = servingSizeNum.getText().toString();
 
-                EditText calorieNum = (EditText) findViewById(R.id.calNum);
+                EditText calorieNum = findViewById(R.id.calNum);
                 String calString = calorieNum.getText().toString();
 
-                EditText fatNum = (EditText) findViewById(R.id.fatNum);
+                EditText fatNum = findViewById(R.id.fatNum);
                 String fatString = fatNum.getText().toString();
 
-                EditText satFatNum = (EditText) findViewById(R.id.satFatNum);
+                EditText satFatNum = findViewById(R.id.satFatNum);
                 String satFatString =  satFatNum.getText().toString();
 
-                EditText cholesterolNum = (EditText) findViewById(R.id.cholesterolNum);
+                EditText cholesterolNum = findViewById(R.id.cholesterolNum);
                 String cholesterolString = cholesterolNum.getText().toString();
 
-                EditText sodiumNum = (EditText) findViewById(R.id.sodiumNum);
+                EditText sodiumNum = findViewById(R.id.sodiumNum);
                 String sodiumString = sodiumNum.getText().toString();
 
-                EditText totalCarbNum = (EditText) findViewById(R.id.totalCarbNum);
+                EditText totalCarbNum = findViewById(R.id.totalCarbNum);
                 String totalCarbString = totalCarbNum.getText().toString();
 
-                EditText fiberNum = (EditText) findViewById(R.id.fiberNum);
+                EditText fiberNum = findViewById(R.id.fiberNum);
                 String fiberString = fiberNum.getText().toString();
 
-                EditText proteinNum = (EditText) findViewById(R.id.proteinNum);
+                EditText proteinNum = findViewById(R.id.proteinNum);
                 String proteinString = proteinNum.getText().toString();
 
                 /**
@@ -87,6 +93,12 @@ public class NutritionEdit extends AppCompatActivity
                 nutritionPageDisplayIntent.putExtra(TOTALCARBOHYDRATES, totalCarbString);
                 nutritionPageDisplayIntent.putExtra(DIETARYFIBER, fiberString);
                 nutritionPageDisplayIntent.putExtra(PROTEIN, proteinString);
+
+                nutritionPageDisplayIntent.putExtra("recipeName", recipeName);
+                nutritionPageDisplayIntent.putExtra("description", description);
+                nutritionPageDisplayIntent.putExtra("image", image);
+                nutritionPageDisplayIntent.putExtra("ingredients", ingredients);
+                nutritionPageDisplayIntent.putExtra("instructions", instructions);
 
 
                 startActivity(nutritionPageDisplayIntent);

@@ -17,16 +17,13 @@ import androidx.appcompat.widget.Toolbar;
 import org.w3c.dom.Text;
 
 public class AddIngredients extends AppCompatActivity {
-    private EditText ingredientsBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_ingredients);
 
-        ingredientsBox = findViewById(R.id.ingredientsBox);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -35,6 +32,8 @@ public class AddIngredients extends AppCompatActivity {
         addInstructions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                EditText ingredientsBox = findViewById(R.id.ingredientsBox);
 
                 String recipeName = getIntent().getStringExtra("recipeName");
                 String description = getIntent().getStringExtra("description");

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,12 +30,12 @@ public class AddInstructions extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                EditText instructionsView = findViewById(R.id.instructionsBox);
+
                 String recipeName = getIntent().getStringExtra("recipeName");
                 String description = getIntent().getStringExtra("description");
                 String image = getIntent().getStringExtra("image"); // This is the Uri String.  Remember to convert to Uri at the end
                 String ingredients = getIntent().getStringExtra("ingredients");
-
-                TextView instructionsView = findViewById(R.id.instructionsBox);
                 String instructions = instructionsView.getText().toString();
 
                 if (TextUtils.isEmpty(instructions))
@@ -43,7 +44,7 @@ public class AddInstructions extends AppCompatActivity {
                 }
                 else
                 {
-                    Intent intent = new Intent(AddInstructions.this, NewPost.class);
+                    Intent intent = new Intent(AddInstructions.this, NutritionEdit.class);
                     intent.putExtra("recipeName", recipeName);
                     intent.putExtra("description", description);
                     intent.putExtra("image", image);

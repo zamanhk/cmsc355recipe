@@ -2,22 +2,17 @@ package com.example.android.recipeapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.TintTypedArray;
 
 import android.content.Intent;
 import java.text.SimpleDateFormat;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,10 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
-
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
@@ -49,21 +40,20 @@ public class NewPost extends AppCompatActivity
     private ImageButton selectImage;
     private Button ingredientsBtn;
     private EditText captionBox, recipeNameBox;
-    private String description;
-    private String saveCurrentDate, saveCurrentTime, postRandomName;
+    private String description,userID;
+    private String saveCurrentDate, saveCurrentTime, postRandomName, downloadURL, recipeName;
 
     private StorageReference postImageReference;
     private Uri image;
 
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
-    private DatabaseReference myRef;
+    private DatabaseReference myRef,postRef;
 
     private static final int GALLERYPIC = 1;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_post);
 
@@ -83,14 +73,12 @@ public class NewPost extends AppCompatActivity
         /*******************************************************************************************
          * Button to upload an image (includes camera/gallery option)
          *******************************************************************************************/
-         selectImage.setOnClickListener(new View.OnClickListener()
-         {
-             @Override
-             public void onClick(View v)
-             {
-                 OpenGallery();
-             }
-         });
+        selectImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenGallery();
+            }
+        });
 
         /*******************************************************************************************
          * Button to navigate to add ingredients page
@@ -98,19 +86,19 @@ public class NewPost extends AppCompatActivity
         ingredientsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 ValidatePostInfo();
             }
         });
-
     }
+
+
 
 
 
     private void ValidatePostInfo()
     {
         description = captionBox.getText().toString();
-        String recipeName = recipeNameBox.getText().toString();
+        recipeName = recipeNameBox.getText().toString();
         if(image == null)
         {
             Toast.makeText(NewPost.   this, "Please select an image for your post ",Toast.LENGTH_SHORT).show();
@@ -121,7 +109,7 @@ public class NewPost extends AppCompatActivity
         }
         else if (TextUtils.isEmpty(recipeName))
         {
-            Toast.makeText(NewPost.this, "Please Enter a Title of your recipe", Toast.LENGTH_SHORT).show();
+            Toast.makeText(NewPost.   this, "Please Enter the Title of your recipe ",Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -174,6 +162,7 @@ public class NewPost extends AppCompatActivity
             }
         });
     }
+
 
 
     private void OpenGallery()
