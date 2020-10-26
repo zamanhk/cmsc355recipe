@@ -19,13 +19,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.Calendar;
+import java.util.HashMap;
 
 /*******************************************************************************************
  * The new post page when button is clicked on main screen.
@@ -40,17 +44,19 @@ public class NewPost extends AppCompatActivity
     private ImageButton selectImage;
     private Button addIngredientsButton,addInstructionsButton,addNutritionFacts,postButton, backButton;
     private EditText captionBox, recipeName;
-    private String description;
-    private String saveCurrentDate, saveCurrentTime, postRandomName;
+    private String description,userID;
+    private String saveCurrentDate, saveCurrentTime, postRandomName, downloadURL;
 
     private StorageReference postImageReference;
     private Uri image;
 
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
-    private DatabaseReference myRef;
+    private DatabaseReference myRef,postRef;
 
     private static final int GALLERYPIC = 1;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -70,8 +76,10 @@ public class NewPost extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        final String userID = user.getUid();
+        userID = user.getUid();
         myRef = mFirebaseDatabase.getReference().child("Users").child(userID);
+
+
 
 
         /*******************************************************************************************
@@ -193,6 +201,8 @@ public class NewPost extends AppCompatActivity
         });
     }
 
+
+
     private void OpenGallery()
     {
         Intent galleryIntent = new Intent();
@@ -220,12 +230,15 @@ public class NewPost extends AppCompatActivity
         EditText foodName = (EditText) findViewById(R.id.RecipeName);
 
         String recipeName = foodName.getText().toString();
+        String captionForPost = captionBox.getText().toString();
         if (!recipeName.equals(""))
         {
-            myRef.child("recipes").child(recipeName).setValue("true");
+            myRef.child("recipes").child(recipeName).setValue("");
             Toast.makeText(NewPost.this, "Posting " + recipeName + ".", Toast.LENGTH_LONG).show();
-
-            foodName.setText(""); // This will reset the text.
+        }
+        if (!captionForPost.equals(""))
+        {
+            myRef.child("recipes").child(recipeName).child("Caption").setValue(captionForPost);
         }
 
         String ingredients = getIntent().getStringExtra("ingredients");
