@@ -2,21 +2,17 @@ package com.example.android.recipeapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import java.text.SimpleDateFormat;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,10 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
-
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
@@ -47,7 +39,7 @@ public class NewPost extends AppCompatActivity
 {
     private ImageButton selectImage;
     private Button addIngredientsButton,addInstructionsButton,addNutritionFacts,postButton, backButton;
-    private EditText captionBox;
+    private EditText captionBox, recipeName;
     private String description;
     private String saveCurrentDate, saveCurrentTime, postRandomName;
 
@@ -73,6 +65,7 @@ public class NewPost extends AppCompatActivity
         addNutritionFacts = (Button) findViewById(R.id.nutritionButton);
         postButton = (Button) findViewById(R.id.postButton);
         captionBox = (EditText) findViewById(R.id.descriptionBox);
+        recipeName = (EditText) findViewById(R.id.RecipeName);
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -140,6 +133,8 @@ public class NewPost extends AppCompatActivity
 
 
     }
+
+
 
     private void ValidatePostInfo()
     {
@@ -222,7 +217,7 @@ public class NewPost extends AppCompatActivity
     {
         // Get values from other activities
         // Initialize the variables to the values
-        EditText foodName = (EditText) findViewById(R.id.editTextTextMultiLine);
+        EditText foodName = (EditText) findViewById(R.id.RecipeName);
 
         String recipeName = foodName.getText().toString();
         if (!recipeName.equals(""))

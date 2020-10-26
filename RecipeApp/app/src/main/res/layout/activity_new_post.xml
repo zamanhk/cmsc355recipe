@@ -119,7 +119,7 @@
         app:layout_constraintVertical_bias="0.648" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/RecipeName"
         android:layout_width="290dp"
         android:layout_height="55dp"
         android:ems="10"
