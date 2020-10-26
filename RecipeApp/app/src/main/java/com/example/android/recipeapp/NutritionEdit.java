@@ -33,20 +33,6 @@ public class NutritionEdit extends AppCompatActivity
         setContentView(R.layout.activity_nutrition_edit);
 
 
-        /**
-         *  Initialize a button.
-         */
-
-        Button backButton = (Button) findViewById(R.id.Backbutton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent backToPost = new Intent (NutritionEdit.this, NewPost.class);
-                startActivity(backToPost);
-            }
-        });
-
         Button editBtn = (Button) findViewById(R.id.enterBtn);
         editBtn.setOnClickListener(new View.OnClickListener()
         {

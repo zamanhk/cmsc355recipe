@@ -73,7 +73,6 @@ public class NewPost extends AppCompatActivity
         addNutritionFacts = (Button) findViewById(R.id.nutritionButton);
         postButton = (Button) findViewById(R.id.postButton);
         captionBox = (EditText) findViewById(R.id.descriptionBox);
-        backButton = (Button) findViewById (R.id.Backbutton);
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -139,13 +138,6 @@ public class NewPost extends AppCompatActivity
             }
         });
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent backIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(backIntent);
-            }
-        });
 
     }
 

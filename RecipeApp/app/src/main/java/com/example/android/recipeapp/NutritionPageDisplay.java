@@ -26,15 +26,6 @@ public class NutritionPageDisplay extends AppCompatActivity {
         setContentView(R.layout.activity_nutrition_page_display);
 
 
-        backButton = findViewById(R.id.Backbutton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent backToNutrition = new Intent(getApplicationContext(), NutritionEdit.class);
-                startActivity(backToNutrition);
-
-            }
-        });
         /**************************
          * Get the intent being sent to this activity
          * Initialize and declare strings to the numbers given by the user
