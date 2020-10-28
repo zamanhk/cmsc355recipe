@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -103,12 +104,11 @@ public class NutritionPageDisplay extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 postRecipe();
-                //SendUsertoMain();
-                //ImagetoFirebase();
             }
         });
 
     }
+
 
     private void postRecipe ()
     {
@@ -122,6 +122,7 @@ public class NutritionPageDisplay extends AppCompatActivity {
          **************************/
 
         Intent intent = getIntent();
+        String image = getIntent().getStringExtra("image"); // This is the Uri String.  Remember to convert to Uri at the end
         String servingSizeString = intent.getStringExtra(NutritionEdit.SERVINGSIZE);
         String caloriesString = intent.getStringExtra(NutritionEdit.CALORIES) + GRAMS;
         String totalfatString = intent.getStringExtra(NutritionEdit.TOTALFAT) + GRAMS;
@@ -131,17 +132,20 @@ public class NutritionPageDisplay extends AppCompatActivity {
         String totalCarbString = intent.getStringExtra(NutritionEdit.TOTALCARBOHYDRATES) + GRAMS;
         String dietaryFiberString = intent.getStringExtra(NutritionEdit.DIETARYFIBER) + GRAMS;
         String proteinString = intent.getStringExtra(NutritionEdit.PROTEIN) + GRAMS;
-
-        String recipeName = getIntent().getStringExtra("recipeName");
+        final String recipeName = getIntent().getStringExtra("recipeName");
         String description = getIntent().getStringExtra("description");
-        String image = getIntent().getStringExtra("image"); // This is the Uri String.  Remember to convert to Uri at the end
         String ingredients = getIntent().getStringExtra("ingredients");
         String instructions = getIntent().getStringExtra("instructions");
 
-        //Uri imageURI = Uri.parse(image); //Converting the String to the Uri
+        //*****************************************************************//
+        //Adding the image into the tree
+        //******************************************************************//
+
+        //*****************************************************************//
+        //adding all the other steps into the tree
+        //******************************************************************//
 
         myRef.child("recipes").child(recipeName).setValue("");
-        //myRef.child("recipes").child(recipeName).child("Image").setValue(image); //Adding Image is not sending the right path.
         myRef.child("recipes").child(recipeName).child("Description").setValue(description);
         myRef.child("recipes").child(recipeName).child("Ingredients").setValue(ingredients);
         myRef.child("recipes").child(recipeName).child("Instructions").setValue(instructions);
@@ -155,12 +159,16 @@ public class NutritionPageDisplay extends AppCompatActivity {
         myRef.child("recipes").child(recipeName).child("Nutrition Facts").child("Total Carbohydrates").setValue(totalCarbString);
         myRef.child("recipes").child(recipeName).child("Nutrition Facts").child("Dietary Fiber").setValue(dietaryFiberString);
         myRef.child("recipes").child(recipeName).child("Nutrition Facts").child("Protein").setValue(proteinString);
-
+        myRef.child("recipes").child(recipeName).child("imageuri").setValue(image);
 
 
         Toast.makeText(NutritionPageDisplay.this, "Posting " + recipeName + ".", Toast.LENGTH_LONG).show();
+        SendUsertoMain();
 
     }
+
+
+
 
     private void SendUsertoMain()
     {
@@ -170,34 +178,5 @@ public class NutritionPageDisplay extends AppCompatActivity {
         finish();
     }
 
-    private void ImagetoFirebase()
-    {
-        Calendar callforDate = Calendar.getInstance();
-        SimpleDateFormat currentDate = new SimpleDateFormat("MM/dd/yyyy");
-        saveCurrentDate = currentDate.format(callforDate.getTime());
-
-        Calendar callforTime = Calendar.getInstance();
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
-        saveCurrentTime = currentTime.format(callforTime.getTime());
-
-        postRandomName = saveCurrentDate + saveCurrentTime;
-
-        StorageReference filepath = postImageReference.child("Post Images").child(image.getLastPathSegment() + postRandomName + ".jpg");
-        filepath.putFile(image).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task)
-            {
-                if(task.isSuccessful())
-                {
-                    Toast.makeText(NutritionPageDisplay.this, "Image uploaded successfully",Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    String message = task.getException().getMessage();
-                    Toast.makeText(NutritionPageDisplay.this, "Error: " + message ,Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
 
 }

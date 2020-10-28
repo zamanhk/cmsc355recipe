@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,6 +27,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.Calendar;
+import java.util.HashMap;
 
 /*******************************************************************************************
  * The new post page when button is clicked on main screen.
@@ -42,6 +44,7 @@ public class NewPost extends AppCompatActivity
     private EditText captionBox, recipeNameBox;
     private String description,userID;
     private String saveCurrentDate, saveCurrentTime, postRandomName, downloadURL, recipeName;
+    private String imageuri;
 
     private StorageReference postImageReference;
     private Uri image;
@@ -57,7 +60,7 @@ public class NewPost extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_post);
 
-        postImageReference = FirebaseStorage.getInstance().getReference().child("Post Images");
+        postImageReference = FirebaseStorage.getInstance().getReference().child("PostImages"); // creates a folder
         selectImage = (ImageButton) findViewById(R.id.imageButton);
         ingredientsBtn = findViewById(R.id.ingredientsButton);
         captionBox = (EditText) findViewById(R.id.descriptionBox);
@@ -93,8 +96,6 @@ public class NewPost extends AppCompatActivity
 
 
 
-
-
     private void ValidatePostInfo()
     {
         description = captionBox.getText().toString();
@@ -116,11 +117,9 @@ public class NewPost extends AppCompatActivity
             Intent intent = new Intent(NewPost.this, AddIngredients.class);
             intent.putExtra("recipeName", recipeName);
             intent.putExtra("description",description);
-            intent.putExtra("image", image.toString()); //This is the String of the Uri image. Remember to convert to Uri at the end
+            intent.putExtra("image", imageuri); //This is the String of the Uri image. Remember to convert to Uri at the end
             startActivity(intent);
 
-            //ImagetoFirebase();
-            //SendUsertoMain();
         }
 
     }
@@ -133,35 +132,42 @@ public class NewPost extends AppCompatActivity
         finish();
     }
 
-    private void ImagetoFirebase()
-    {
-        Calendar callforDate = Calendar.getInstance();
-        SimpleDateFormat currentDate = new SimpleDateFormat("MM/dd/yyyy");
-        saveCurrentDate = currentDate.format(callforDate.getTime());
-
-        Calendar callforTime = Calendar.getInstance();
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
-        saveCurrentTime = currentTime.format(callforTime.getTime());
-
-        postRandomName = saveCurrentDate + saveCurrentTime;
-
-        StorageReference filepath = postImageReference.child("Post Images").child(image.getLastPathSegment() + postRandomName + ".jpg");
-        filepath.putFile(image).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task)
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+        {
+            super.onActivityResult(requestCode, resultCode, data);
+            if(requestCode == GALLERYPIC)
             {
-                if(task.isSuccessful())
+                if(resultCode == RESULT_OK)
                 {
-                    Toast.makeText(NewPost.this, "Image uploaded successfully",Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    String message = task.getException().getMessage();
-                    Toast.makeText(NewPost.this, "Error: " + message ,Toast.LENGTH_SHORT).show();
+                    image = data.getData();
+
+                    final StorageReference filepath = postImageReference.child("PostImages" + image.getLastPathSegment()); // retrieving from folder
+
+                    filepath.putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+                        {
+                            filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri)
+                                {
+                                    imageuri = uri.toString();
+                                    myRef.child("imageuri").child("recipes").setValue(imageuri);
+                                    //HashMap<String,String> hashMap = new HashMap<>();
+                                    //hashMap.put("imageurl",imageuri);
+
+                                }
+                            });
+
+                        }
+                    });
+
                 }
             }
-        });
-    }
+        }
+
+
 
 
 
@@ -173,16 +179,6 @@ public class NewPost extends AppCompatActivity
         startActivityForResult(galleryIntent,GALLERYPIC);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == GALLERYPIC && resultCode == RESULT_OK && data != null)
-        {
-            image = data.getData();
-            selectImage.setImageURI(image);
 
-        }
-    }
 
 }
