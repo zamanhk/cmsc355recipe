@@ -72,7 +72,6 @@ public class NewPost extends AppCompatActivity
         final String userID = user.getUid();
         myRef = mFirebaseDatabase.getReference().child("Users").child(userID);
 
-
         /*******************************************************************************************
          * Button to upload an image (includes camera/gallery option)
          *******************************************************************************************/
@@ -93,8 +92,6 @@ public class NewPost extends AppCompatActivity
             }
         });
     }
-
-
 
     private void ValidatePostInfo()
     {
@@ -153,10 +150,6 @@ public class NewPost extends AppCompatActivity
                                 public void onSuccess(Uri uri)
                                 {
                                     imageuri = uri.toString();
-                                    myRef.child("imageuri").child("recipes").setValue(imageuri);
-                                    //HashMap<String,String> hashMap = new HashMap<>();
-                                    //hashMap.put("imageurl",imageuri);
-
                                 }
                             });
 
@@ -166,10 +159,6 @@ public class NewPost extends AppCompatActivity
                 }
             }
         }
-
-
-
-
 
     private void OpenGallery()
     {
