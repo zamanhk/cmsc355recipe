@@ -138,6 +138,7 @@ public class NewPost extends AppCompatActivity
                 if(resultCode == RESULT_OK)
                 {
                     image = data.getData();
+                    selectImage.setImageURI(image);
 
                     final StorageReference filepath = postImageReference.child("PostImages" + image.getLastPathSegment()); // retrieving from folder
 
@@ -149,7 +150,9 @@ public class NewPost extends AppCompatActivity
                                 @Override
                                 public void onSuccess(Uri uri)
                                 {
+                                    Toast.makeText(NewPost.   this, "Image Successfully Uploaded",Toast.LENGTH_SHORT).show();
                                     imageuri = uri.toString();
+
                                 }
                             });
 
