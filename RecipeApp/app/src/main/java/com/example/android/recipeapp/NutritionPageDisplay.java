@@ -1,50 +1,31 @@
 package com.example.android.recipeapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class NutritionPageDisplay extends AppCompatActivity {
 
-    /*****************************
-     * final Constants for grams and milligrams
-     *
-     ******************************/
+    /*******************************************************************************************
+     * Final constants for grams and milligrams
+     *******************************************************************************************/
 
     final String GRAMS = "g";
-    final String MILIGRAMS = "mg";
-
-    private String saveCurrentDate, saveCurrentTime, postRandomName;
-    private Uri image;
-    private StorageReference postImageReference;
+    final String MILLIGRAMS = "mg";
     private Button postButton;
 
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
-    private DatabaseReference myRef,postRef;
-
-
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -58,22 +39,22 @@ public class NutritionPageDisplay extends AppCompatActivity {
         final String userID = user.getUid();
         myRef = mFirebaseDatabase.getReference().child("Users").child(userID);
 
-        /**************************
+        /*******************************************************************************************
          * Get the intent being sent to this activity
          * Initialize and declare strings to the numbers given by the user
          * Initialize the textview
-         **************************/
+         *******************************************************************************************/
 
         Intent intent = getIntent();
         String servingSizeString = intent.getStringExtra(NutritionEdit.SERVINGSIZE);
-        String caloriesString = intent.getStringExtra(NutritionEdit.CALORIES) + GRAMS;
-        String totalfatString = intent.getStringExtra(NutritionEdit.TOTALFAT) + GRAMS;
-        String satfatString = intent.getStringExtra(NutritionEdit.SATFAT) + GRAMS;
-        String cholesterolString = intent.getStringExtra(NutritionEdit.CHOLESTEROL) + MILIGRAMS;
-        String sodiumString = intent.getStringExtra(NutritionEdit.SODIUM) + MILIGRAMS;
-        String totalCarbString = intent.getStringExtra(NutritionEdit.TOTALCARBOHYDRATES) + GRAMS;
-        String dietaryFiberString = intent.getStringExtra(NutritionEdit.DIETARYFIBER) + GRAMS;
-        String proteinString = intent.getStringExtra(NutritionEdit.PROTEIN) + GRAMS;
+        String caloriesString = AddGramstoString(intent.getStringExtra(NutritionEdit.CALORIES));
+        String totalfatString = AddGramstoString(intent.getStringExtra(NutritionEdit.TOTALFAT));
+        String satfatString = AddGramstoString(intent.getStringExtra(NutritionEdit.SATFAT));
+        String cholesterolString = AddMilligramstoString(intent.getStringExtra(NutritionEdit.CHOLESTEROL));
+        String sodiumString = AddMilligramstoString(intent.getStringExtra(NutritionEdit.SODIUM));
+        String totalCarbString = AddGramstoString(intent.getStringExtra(NutritionEdit.TOTALCARBOHYDRATES));
+        String dietaryFiberString = AddGramstoString(intent.getStringExtra(NutritionEdit.DIETARYFIBER));
+        String proteinString = AddMilligramstoString(intent.getStringExtra(NutritionEdit.PROTEIN));
 
         TextView servingSizeView = findViewById(R.id.servingSizeView);
         TextView caloriesView = findViewById(R.id.calorieView);
@@ -98,7 +79,6 @@ public class NutritionPageDisplay extends AppCompatActivity {
         dietaryFiberView.setText(dietaryFiberString);
         proteinView.setText(proteinString);
 
-
         postButton = findViewById(R.id.postBtn);
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,38 +92,32 @@ public class NutritionPageDisplay extends AppCompatActivity {
 
     private void postRecipe ()
     {
-        // Get values from other activities
-        // Initialize the variables to the values
 
-        /**************************
-         * Get the intent being sent to this activity
-         * Initialize and declare strings to the numbers given by the user
-         * Initialize the textview
-         **************************/
+        /*******************************************************************************************
+         * Get values from previous activities
+         * Initialize the variables to the values
+         *******************************************************************************************/
 
-        Intent intent = getIntent();
-        String image = getIntent().getStringExtra("image"); // This is the Uri String.  Remember to convert to Uri at the end
-        String servingSizeString = intent.getStringExtra(NutritionEdit.SERVINGSIZE);
-        String caloriesString = intent.getStringExtra(NutritionEdit.CALORIES) + GRAMS;
-        String totalfatString = intent.getStringExtra(NutritionEdit.TOTALFAT) + GRAMS;
-        String satfatString = intent.getStringExtra(NutritionEdit.SATFAT) + GRAMS;
-        String cholesterolString = intent.getStringExtra(NutritionEdit.CHOLESTEROL) + MILIGRAMS;
-        String sodiumString = intent.getStringExtra(NutritionEdit.SODIUM) + MILIGRAMS;
-        String totalCarbString = intent.getStringExtra(NutritionEdit.TOTALCARBOHYDRATES) + GRAMS;
-        String dietaryFiberString = intent.getStringExtra(NutritionEdit.DIETARYFIBER) + GRAMS;
-        String proteinString = intent.getStringExtra(NutritionEdit.PROTEIN) + GRAMS;
         final String recipeName = getIntent().getStringExtra("recipeName");
         String description = getIntent().getStringExtra("description");
         String ingredients = getIntent().getStringExtra("ingredients");
         String instructions = getIntent().getStringExtra("instructions");
+        String image = getIntent().getStringExtra("image");
 
-        //*****************************************************************//
-        //Adding the image into the tree
-        //******************************************************************//
+        Intent intent = getIntent();
+        String servingSizeString = intent.getStringExtra(NutritionEdit.SERVINGSIZE);
+        String caloriesString = AddGramstoString(intent.getStringExtra(NutritionEdit.CALORIES));
+        String totalfatString = AddGramstoString(intent.getStringExtra(NutritionEdit.TOTALFAT));
+        String satfatString = AddGramstoString(intent.getStringExtra(NutritionEdit.SATFAT));
+        String cholesterolString = AddMilligramstoString(intent.getStringExtra(NutritionEdit.CHOLESTEROL));
+        String sodiumString = AddMilligramstoString(intent.getStringExtra(NutritionEdit.SODIUM));
+        String totalCarbString = AddGramstoString(intent.getStringExtra(NutritionEdit.TOTALCARBOHYDRATES));
+        String dietaryFiberString = AddGramstoString(intent.getStringExtra(NutritionEdit.DIETARYFIBER));
+        String proteinString = AddMilligramstoString(intent.getStringExtra(NutritionEdit.PROTEIN));
 
-        //*****************************************************************//
-        //adding all the other steps into the tree
-        //******************************************************************//
+        /*******************************************************************************************
+         * Adding all the information of the recipe into the database
+         *******************************************************************************************/
 
         myRef.child("recipes").child(recipeName).setValue("");
         myRef.child("recipes").child(recipeName).child("Description").setValue(description);
@@ -164,11 +138,7 @@ public class NutritionPageDisplay extends AppCompatActivity {
 
         Toast.makeText(NutritionPageDisplay.this, "Posting " + recipeName + ".", Toast.LENGTH_LONG).show();
         SendUsertoMain();
-
     }
-
-
-
 
     private void SendUsertoMain()
     {
@@ -178,5 +148,16 @@ public class NutritionPageDisplay extends AppCompatActivity {
         finish();
     }
 
+    public String AddGramstoString (String valueString)
+    {
+        String result = valueString + GRAMS;
+        return result;
+    }
+
+    public String AddMilligramstoString (String valueString)
+    {
+        String result = valueString + MILLIGRAMS;
+        return result;
+    }
 
 }

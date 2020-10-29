@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddInstructions extends AppCompatActivity {
@@ -52,9 +51,7 @@ public class AddInstructions extends AppCompatActivity {
                     intent.putExtra("instructions", instructions);
                     startActivity(intent);
                 }
-
             }
         });
-
     }
 }

@@ -1,11 +1,9 @@
 package com.example.android.recipeapp;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import java.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,9 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -25,9 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import java.util.Calendar;
-import java.util.HashMap;
 
 /*******************************************************************************************
  * The new post page when button is clicked on main screen.
@@ -42,8 +35,8 @@ public class NewPost extends AppCompatActivity
     private ImageButton selectImage;
     private Button ingredientsBtn;
     private EditText captionBox, recipeNameBox;
-    private String description,userID;
-    private String saveCurrentDate, saveCurrentTime, postRandomName, downloadURL, recipeName;
+    private String description;
+    private String recipeName;
     private String imageuri;
 
     private StorageReference postImageReference;
@@ -51,7 +44,7 @@ public class NewPost extends AppCompatActivity
 
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
-    private DatabaseReference myRef,postRef;
+    private DatabaseReference myRef;
 
     private static final int GALLERYPIC = 1;
 
@@ -61,9 +54,9 @@ public class NewPost extends AppCompatActivity
         setContentView(R.layout.activity_new_post);
 
         postImageReference = FirebaseStorage.getInstance().getReference().child("PostImages"); // creates a folder
-        selectImage = (ImageButton) findViewById(R.id.imageButton);
+        selectImage = findViewById(R.id.imageButton);
         ingredientsBtn = findViewById(R.id.ingredientsButton);
-        captionBox = (EditText) findViewById(R.id.descriptionBox);
+        captionBox = findViewById(R.id.descriptionBox);
         recipeNameBox = findViewById(R.id.RecipeName);
 
         mAuth = FirebaseAuth.getInstance();
@@ -116,17 +109,8 @@ public class NewPost extends AppCompatActivity
             intent.putExtra("description",description);
             intent.putExtra("image", imageuri); //This is the String of the Uri image. Remember to convert to Uri at the end
             startActivity(intent);
-
         }
 
-    }
-
-    private void SendUsertoMain()
-    {
-        Intent sendUsertoMain = new Intent(NewPost.this, MainActivity.class);
-        sendUsertoMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(sendUsertoMain);
-        finish();
     }
 
         @Override
@@ -170,7 +154,4 @@ public class NewPost extends AppCompatActivity
         galleryIntent.setType("image/*");
         startActivityForResult(galleryIntent,GALLERYPIC);
     }
-
-
-
 }

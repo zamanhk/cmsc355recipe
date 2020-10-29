@@ -11,10 +11,10 @@ import android.widget.EditText;
 public class NutritionEdit extends AppCompatActivity
 {
 
-    /**
+    /*******************************************************************************************
      * Declare and Initialize static final variables
-     * as keys to the next activity.
-     */
+     * as keys to the next activity
+     *******************************************************************************************/
 
     public static final String CALORIES = "com.example.android.recipeapp.CALORIES";
     public static final String TOTALFAT = "com.example.android.recipeapp.TOTALFAT";
@@ -32,8 +32,7 @@ public class NutritionEdit extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nutrition_edit);
 
-
-        Button editBtn = (Button) findViewById(R.id.enterBtn);
+        Button editBtn = findViewById(R.id.enterBtn);
         editBtn.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -46,42 +45,35 @@ public class NutritionEdit extends AppCompatActivity
                 String ingredients = getIntent().getStringExtra("ingredients");
                 String instructions = getIntent().getStringExtra("instructions");
 
-                /**
+                /*******************************************************************************************
                  * Declare and Initialize EditText
                  * Set String variables to the number within the EditText
-                 */
+                 *******************************************************************************************/
 
                 EditText servingSizeNum = findViewById(R.id.servingSizeNum);
-                String servingSizeString = servingSizeNum.getText().toString();
-
                 EditText calorieNum = findViewById(R.id.calNum);
-                String calString = calorieNum.getText().toString();
-
                 EditText fatNum = findViewById(R.id.fatNum);
-                String fatString = fatNum.getText().toString();
-
                 EditText satFatNum = findViewById(R.id.satFatNum);
-                String satFatString =  satFatNum.getText().toString();
-
                 EditText cholesterolNum = findViewById(R.id.cholesterolNum);
-                String cholesterolString = cholesterolNum.getText().toString();
-
                 EditText sodiumNum = findViewById(R.id.sodiumNum);
-                String sodiumString = sodiumNum.getText().toString();
-
                 EditText totalCarbNum = findViewById(R.id.totalCarbNum);
-                String totalCarbString = totalCarbNum.getText().toString();
-
                 EditText fiberNum = findViewById(R.id.fiberNum);
-                String fiberString = fiberNum.getText().toString();
-
                 EditText proteinNum = findViewById(R.id.proteinNum);
+
+                String servingSizeString = servingSizeNum.getText().toString();
+                String calString = calorieNum.getText().toString();
+                String fatString = fatNum.getText().toString();
+                String satFatString =  satFatNum.getText().toString();
+                String cholesterolString = cholesterolNum.getText().toString();
+                String sodiumString = sodiumNum.getText().toString();
+                String totalCarbString = totalCarbNum.getText().toString();
+                String fiberString = fiberNum.getText().toString();
                 String proteinString = proteinNum.getText().toString();
 
-                /**
-                 * Declare and initialize intent
-                 * Send these keys and values to the next activity.
-                 */
+                /*******************************************************************************************
+                 * Declare and Initialize the intent
+                 * Send these keys and values to the Display page
+                 *******************************************************************************************/
 
                 Intent nutritionPageDisplayIntent = new Intent(getApplicationContext(), NutritionPageDisplay.class);
                 nutritionPageDisplayIntent.putExtra(SERVINGSIZE, servingSizeString);
@@ -100,12 +92,9 @@ public class NutritionEdit extends AppCompatActivity
                 nutritionPageDisplayIntent.putExtra("ingredients", ingredients);
                 nutritionPageDisplayIntent.putExtra("instructions", instructions);
 
-
                 startActivity(nutritionPageDisplayIntent);
             }
         });
-
-
 
     }
 }
