@@ -19,10 +19,9 @@ public class AddInstructions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_instructions);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         Button addNutrition = findViewById(R.id.nutritionButton);
         addNutrition.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +36,10 @@ public class AddInstructions extends AppCompatActivity {
                 String ingredients = getIntent().getStringExtra("ingredients");
                 String instructions = instructionsView.getText().toString();
 
+                InstructionCheck(recipeName, description, image, ingredients, instructions);
+            }
+
+            private void InstructionCheck(String recipeName, String description, String image, String ingredients, String instructions) {
                 if (TextUtils.isEmpty(instructions))
                 {
                     Toast.makeText(AddInstructions.this, "Please Enter the Instructions of your Recipe", Toast.LENGTH_SHORT).show();

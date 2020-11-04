@@ -86,6 +86,11 @@ public class NewPost extends AppCompatActivity
         });
     }
 
+    /*******************************************************************************************
+     * Checks if the User has entered a picture, a recipe name, and a description
+     * of the recipe.
+     *******************************************************************************************/
+
     private void ValidatePostInfo()
     {
         description = captionBox.getText().toString();

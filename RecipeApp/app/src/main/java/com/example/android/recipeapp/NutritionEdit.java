@@ -91,7 +91,6 @@ public class NutritionEdit extends AppCompatActivity
                 nutritionPageDisplayIntent.putExtra("image", image);
                 nutritionPageDisplayIntent.putExtra("ingredients", ingredients);
                 nutritionPageDisplayIntent.putExtra("instructions", instructions);
-
                 startActivity(nutritionPageDisplayIntent);
             }
         });

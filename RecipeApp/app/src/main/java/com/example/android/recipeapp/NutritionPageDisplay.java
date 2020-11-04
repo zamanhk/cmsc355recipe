@@ -66,9 +66,10 @@ public class NutritionPageDisplay extends AppCompatActivity {
         TextView dietaryFiberView = findViewById(R.id.fiberView);
         TextView proteinView = findViewById(R.id.proteinView);
 
-        /*****************************
+        /*******************************************************************************************
          * Set the TextView to display the String numbers
-         ******************************/
+         *******************************************************************************************/
+
         servingSizeView.setText(servingSizeString);
         caloriesView.setText(caloriesString);
         totalFatView.setText(totalfatString);
@@ -140,6 +141,10 @@ public class NutritionPageDisplay extends AppCompatActivity {
         SendUsertoMain();
     }
 
+    /*******************************************************************************************
+     * This will send the User back to the home Page.
+     *******************************************************************************************/
+
     private void SendUsertoMain()
     {
         Intent sendUsertoMain = new Intent(NutritionPageDisplay.this, MainActivity.class);
@@ -148,16 +153,22 @@ public class NutritionPageDisplay extends AppCompatActivity {
         finish();
     }
 
+    /*******************************************************************************************
+     * This will add grams (g) at the end of the string.
+     *******************************************************************************************/
+
     public String AddGramstoString (String valueString)
     {
-        String result = valueString + GRAMS;
-        return result;
+        return valueString + GRAMS;
     }
+
+    /*******************************************************************************************
+     * This will add milligrams (mg) at the end of the string.
+     *******************************************************************************************/
 
     public String AddMilligramstoString (String valueString)
     {
-        String result = valueString + MILLIGRAMS;
-        return result;
+        return valueString + MILLIGRAMS;
     }
 
 }

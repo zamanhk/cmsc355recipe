@@ -3,7 +3,6 @@ package com.example.android.recipeapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,7 +23,6 @@ public class AddIngredients extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         Button addInstructions = findViewById(R.id.instructionsButton);
         addInstructions.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +35,10 @@ public class AddIngredients extends AppCompatActivity {
                 String image = getIntent().getStringExtra("image"); // This is the Uri String.  Remember to convert to Uri at the end
                 String ingredients = ingredientsBox.getText().toString();
 
+                IngredientsCheck(recipeName, description, image, ingredients);
+            }
+
+            private void IngredientsCheck(String recipeName, String description, String image, String ingredients) {
                 if (TextUtils.isEmpty(ingredients))
                 {
                     Toast.makeText(AddIngredients.this,"Please Enter the Ingredients of your Recipe", Toast.LENGTH_SHORT).show();
