@@ -109,16 +109,20 @@ public class NewPost extends AppCompatActivity
         }
         else
         {
-            Intent intent = new Intent(NewPost.this, AddIngredients.class);
-            intent.putExtra("recipeName", recipeName);
-            intent.putExtra("description",description);
-            intent.putExtra("image", imageuri); //This is the String of the Uri image. Remember to convert to Uri at the end
-            startActivity(intent);
+            SendToIngredients();
         }
 
     }
 
-        @Override
+    private void SendToIngredients() {
+        Intent intent = new Intent(NewPost.this, AddIngredients.class);
+        intent.putExtra("recipeName", recipeName);
+        intent.putExtra("description",description);
+        intent.putExtra("image", imageuri); //This is the String of the Uri image. Remember to convert to Uri at the end
+        startActivity(intent);
+    }
+
+    @Override
         protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
         {
             super.onActivityResult(requestCode, resultCode, data);

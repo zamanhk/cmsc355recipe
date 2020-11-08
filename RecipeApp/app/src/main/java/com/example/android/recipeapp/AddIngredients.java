@@ -45,13 +45,17 @@ public class AddIngredients extends AppCompatActivity {
                 }
                 else
                 {
-                    Intent intent = new Intent(AddIngredients.this, AddInstructions.class);
-                    intent.putExtra("recipeName", recipeName);
-                    intent.putExtra("description", description);
-                    intent.putExtra("image", image);
-                    intent.putExtra("ingredients", ingredients);
-                    startActivity(intent);
+                    SendToInstructions(recipeName, description, image, ingredients);
                 }
+            }
+
+            private void SendToInstructions(String recipeName, String description, String image, String ingredients) {
+                Intent intent = new Intent(AddIngredients.this, AddInstructions.class);
+                intent.putExtra("recipeName", recipeName);
+                intent.putExtra("description", description);
+                intent.putExtra("image", image);
+                intent.putExtra("ingredients", ingredients);
+                startActivity(intent);
             }
         });
     }

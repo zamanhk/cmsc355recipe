@@ -46,14 +46,18 @@ public class AddInstructions extends AppCompatActivity {
                 }
                 else
                 {
-                    Intent intent = new Intent(AddInstructions.this, NutritionEdit.class);
-                    intent.putExtra("recipeName", recipeName);
-                    intent.putExtra("description", description);
-                    intent.putExtra("image", image);
-                    intent.putExtra("ingredients", ingredients);
-                    intent.putExtra("instructions", instructions);
-                    startActivity(intent);
+                    SendToNutritionEdit(recipeName, description, image, ingredients, instructions);
                 }
+            }
+
+            private void SendToNutritionEdit(String recipeName, String description, String image, String ingredients, String instructions) {
+                Intent intent = new Intent(AddInstructions.this, NutritionEdit.class);
+                intent.putExtra("recipeName", recipeName);
+                intent.putExtra("description", description);
+                intent.putExtra("image", image);
+                intent.putExtra("ingredients", ingredients);
+                intent.putExtra("instructions", instructions);
+                startActivity(intent);
             }
         });
     }
