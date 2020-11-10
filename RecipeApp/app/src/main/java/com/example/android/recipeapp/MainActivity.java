@@ -5,7 +5,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
@@ -35,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
-    private RecyclerView postList;
     private Toolbar mToolbar;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private CircleImageView navProfileImage;
@@ -47,10 +45,6 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference userRef;
 
     String currentUserId;
-
-
-
-
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -72,10 +66,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        /**
-         *  Search Bar Button
-         */
+        /*******************************************************************************************
+         * Search Bar Button
+         *******************************************************************************************/
 
         searchButton = findViewById(R.id.searchBtn);
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -86,10 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(searchPageIntent);
             }
         });
-
-
-
-
 
         mAuth =FirebaseAuth.getInstance();
         currentUserId = mAuth.getCurrentUser().getUid();
@@ -105,28 +94,27 @@ public class MainActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        View navView = navigationView.inflateHeaderView(R.layout.navigation_header);
         navProfileImage = (CircleImageView) findViewById(R.id.nav_profile_image);
         navProfileUsername = (TextView) findViewById(R.id.nav_user_full_name);
 
         userRef.child(currentUserId);
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                if (dataSnapshot.exists())
+                {
 
-                    if (dataSnapshot.hasChild("FullName")) {
+                    if (dataSnapshot.hasChild("FullName"))
+                    {
                         String fullName = Objects.requireNonNull(dataSnapshot.child("FullName").getValue()).toString();
                         navProfileUsername.setText(fullName);
-
                     }
-
-                    if (dataSnapshot.hasChild("ProfileImage")) {
+                    if (dataSnapshot.hasChild("ProfileImage"))
+                    {
                         String image = Objects.requireNonNull(dataSnapshot.child("ProfileImage").getValue()).toString();
                         Picasso.get().load(image).placeholder(R.drawable.profile).into(navProfileImage);
-
                     }
-
                 }
 
                 else {
@@ -134,15 +122,12 @@ public class MainActivity extends AppCompatActivity {
                             "Profile name and image does not exist",
                             Toast.LENGTH_SHORT).show();
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -152,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 
     protected void onStart()
@@ -176,18 +160,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                if(!dataSnapshot.hasChild(CurrentUserId))
+                if (!dataSnapshot.hasChild(CurrentUserId))
                 {
                     SendUsertoSetupActivity();
                 }
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
 
             }
         });
-
     }
 
     private void SendUsertoSetupActivity()
@@ -197,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(AuthNoSetup);
         finish();
     }
-
 
     private void SendUserToLoginActivity()
     {
@@ -243,6 +225,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    /*******************************************************************************************
+     * SendUsertoFindFriends will send the User to the find friends activity
+     *******************************************************************************************/
 
     private void SendUsertoFindFriends()
     {

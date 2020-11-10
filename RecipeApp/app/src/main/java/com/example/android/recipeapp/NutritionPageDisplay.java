@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-
 public class NutritionPageDisplay extends AppCompatActivity {
 
     /*******************************************************************************************
@@ -87,9 +86,7 @@ public class NutritionPageDisplay extends AppCompatActivity {
                 postRecipe();
             }
         });
-
     }
-
 
     private void postRecipe ()
     {
@@ -136,7 +133,6 @@ public class NutritionPageDisplay extends AppCompatActivity {
         myRef.child("recipes").child(recipeName).child("Nutrition Facts").child("Protein").setValue(proteinString);
         myRef.child("recipes").child(recipeName).child("imageuri").setValue(image);
 
-
         Toast.makeText(NutritionPageDisplay.this, "Posting " + recipeName + ".", Toast.LENGTH_LONG).show();
         SendUsertoMain();
     }
@@ -170,5 +166,4 @@ public class NutritionPageDisplay extends AppCompatActivity {
     {
         return valueString + MILLIGRAMS;
     }
-
 }

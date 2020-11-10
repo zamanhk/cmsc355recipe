@@ -26,7 +26,8 @@ public class AddInstructions extends AppCompatActivity {
         Button addNutrition = findViewById(R.id.nutritionButton);
         addNutrition.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
 
                 EditText instructionsView = findViewById(R.id.instructionsBox);
 
@@ -39,7 +40,8 @@ public class AddInstructions extends AppCompatActivity {
                 InstructionCheck(recipeName, description, image, ingredients, instructions);
             }
 
-            private void InstructionCheck(String recipeName, String description, String image, String ingredients, String instructions) {
+            private void InstructionCheck(String recipeName, String description, String image, String ingredients, String instructions)
+            {
                 if (TextUtils.isEmpty(instructions))
                 {
                     Toast.makeText(AddInstructions.this, "Please Enter the Instructions of your Recipe", Toast.LENGTH_SHORT).show();
@@ -50,7 +52,8 @@ public class AddInstructions extends AppCompatActivity {
                 }
             }
 
-            private void SendToNutritionEdit(String recipeName, String description, String image, String ingredients, String instructions) {
+            private void SendToNutritionEdit(String recipeName, String description, String image, String ingredients, String instructions)
+            {
                 Intent intent = new Intent(AddInstructions.this, NutritionEdit.class);
                 intent.putExtra("recipeName", recipeName);
                 intent.putExtra("description", description);

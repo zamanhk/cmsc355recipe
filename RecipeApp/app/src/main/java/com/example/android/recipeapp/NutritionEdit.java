@@ -39,6 +39,11 @@ public class NutritionEdit extends AppCompatActivity
             public void onClick(View view)
             {
 
+                /*******************************************************************************************
+                 * Grab the recipe name, description, image, ingredients, and instructions from
+                 * AddInstructions.class
+                 *******************************************************************************************/
+
                 String recipeName = getIntent().getStringExtra("recipeName");
                 String description = getIntent().getStringExtra("description");
                 String image = getIntent().getStringExtra("image"); // This is the Uri String.  Remember to convert to Uri at the end
@@ -75,23 +80,28 @@ public class NutritionEdit extends AppCompatActivity
                  * Send these keys and values to the Display page
                  *******************************************************************************************/
 
-                Intent nutritionPageDisplayIntent = new Intent(getApplicationContext(), NutritionPageDisplay.class);
-                nutritionPageDisplayIntent.putExtra(SERVINGSIZE, servingSizeString);
-                nutritionPageDisplayIntent.putExtra(CALORIES, calString);
-                nutritionPageDisplayIntent.putExtra(TOTALFAT, fatString);
-                nutritionPageDisplayIntent.putExtra(SATFAT, satFatString);
-                nutritionPageDisplayIntent.putExtra(CHOLESTEROL, cholesterolString);
-                nutritionPageDisplayIntent.putExtra(SODIUM, sodiumString);
-                nutritionPageDisplayIntent.putExtra(TOTALCARBOHYDRATES, totalCarbString);
-                nutritionPageDisplayIntent.putExtra(DIETARYFIBER, fiberString);
-                nutritionPageDisplayIntent.putExtra(PROTEIN, proteinString);
+                Intent displayIntent = new Intent(getApplicationContext(), NutritionPageDisplay.class);
+                displayIntent.putExtra(SERVINGSIZE, servingSizeString);
+                displayIntent.putExtra(CALORIES, calString);
+                displayIntent.putExtra(TOTALFAT, fatString);
+                displayIntent.putExtra(SATFAT, satFatString);
+                displayIntent.putExtra(CHOLESTEROL, cholesterolString);
+                displayIntent.putExtra(SODIUM, sodiumString);
+                displayIntent.putExtra(TOTALCARBOHYDRATES, totalCarbString);
+                displayIntent.putExtra(DIETARYFIBER, fiberString);
+                displayIntent.putExtra(PROTEIN, proteinString);
 
-                nutritionPageDisplayIntent.putExtra("recipeName", recipeName);
-                nutritionPageDisplayIntent.putExtra("description", description);
-                nutritionPageDisplayIntent.putExtra("image", image);
-                nutritionPageDisplayIntent.putExtra("ingredients", ingredients);
-                nutritionPageDisplayIntent.putExtra("instructions", instructions);
-                startActivity(nutritionPageDisplayIntent);
+                SendToDisplayPage(recipeName, description, image, ingredients, instructions, displayIntent);
+            }
+
+            private void SendToDisplayPage(String recipeName, String description, String image, String ingredients, String instructions, Intent intent)
+            {
+                intent.putExtra("recipeName", recipeName);
+                intent.putExtra("description", description);
+                intent.putExtra("image", image);
+                intent.putExtra("ingredients", ingredients);
+                intent.putExtra("instructions", instructions);
+                startActivity(intent);
             }
         });
 

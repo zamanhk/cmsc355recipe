@@ -114,6 +114,11 @@ public class NewPost extends AppCompatActivity
 
     }
 
+    /*******************************************************************************************
+     * SendToIngredients will send the recipe name, description, and image
+     * to the ingredients activity.
+     *******************************************************************************************/
+
     private void SendToIngredients() {
         Intent intent = new Intent(NewPost.this, AddIngredients.class);
         intent.putExtra("recipeName", recipeName);

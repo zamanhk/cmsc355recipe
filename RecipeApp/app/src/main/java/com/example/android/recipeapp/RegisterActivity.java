@@ -46,8 +46,6 @@ public class RegisterActivity extends AppCompatActivity
                 CreateNewAccount();
             }
         });
-
-
     }
 
     @Override
@@ -75,6 +73,11 @@ public class RegisterActivity extends AppCompatActivity
         String password = registerPassword.getText().toString();
         String confirmPassword = registerConfirmPassword.getText().toString();
 
+        /*******************************************************************************************
+         * Checks if the User has entered all the information needed.
+         * Checks if the User has entered a password or if the passwords match
+         *******************************************************************************************/
+
         if(TextUtils.isEmpty(email))
         {
             Toast.makeText(this,"Type your email",Toast.LENGTH_SHORT).show();
@@ -93,9 +96,7 @@ public class RegisterActivity extends AppCompatActivity
         }
         else
         {
-            loadingBar.setTitle("Creating your new account");
-            loadingBar.setMessage("Please wait for the authentication to be done");
-            loadingBar.show();
+            showLoadingBar();
             loadingBar.setCanceledOnTouchOutside(true);
 
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -117,8 +118,17 @@ public class RegisterActivity extends AppCompatActivity
                 }
             });
         }
-
     }
+
+    private void showLoadingBar() {
+        loadingBar.setTitle("Creating your new account");
+        loadingBar.setMessage("Please wait for the authentication to be done");
+        loadingBar.show();
+    }
+
+    /*******************************************************************************************
+     * SendUsertoSetupActivity will send the user to the setup activity.
+     *******************************************************************************************/
 
     private void SendUsertoSetupActivity()
     {
@@ -127,5 +137,4 @@ public class RegisterActivity extends AppCompatActivity
         startActivity(setupIntent);
         finish();
     }
-
 }

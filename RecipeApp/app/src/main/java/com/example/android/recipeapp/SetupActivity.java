@@ -1,10 +1,8 @@
 package com.example.android.recipeapp;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.PictureInPictureParams;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -38,11 +36,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SetupActivity extends AppCompatActivity
 {
     private EditText userName,fullName,biography;
-    private Button saveButton;
     private CircleImageView profileImage;
     private ProgressDialog loadingBar;
 
-    private FirebaseAuth mAuth;
     private DatabaseReference userRef;
     private StorageReference userProfileImageRef;
 
@@ -55,7 +51,7 @@ public class SetupActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         currentUserId = mAuth.getCurrentUser().getUid();
         userRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
         userProfileImageRef = FirebaseStorage.getInstance().getReference().child("ProfileImages");
@@ -64,7 +60,7 @@ public class SetupActivity extends AppCompatActivity
         fullName = (EditText) findViewById(R.id.setup_fullname);
         biography = (EditText) findViewById(R.id.setup_bio);
         profileImage = (CircleImageView) findViewById(R.id.setup_profile);
-        saveButton = (Button) findViewById (R.id.setup_saving_button);
+        Button saveButton = (Button) findViewById(R.id.setup_saving_button);
         loadingBar = new ProgressDialog(this);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +113,7 @@ public class SetupActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == GALLERYPIC && resultCode == RESULT_OK && data != null)
+        if (requestCode == GALLERYPIC && resultCode == RESULT_OK && data != null)
         {
             Uri image = data.getData();
             CropImage.activity(image)
@@ -125,10 +121,10 @@ public class SetupActivity extends AppCompatActivity
                     .setAspectRatio(1,1)
                     .start(this);
         }
-        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
         {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if(resultCode == RESULT_OK)
+            if (resultCode == RESULT_OK)
             {
                 loadingBar.setTitle("Profile Image");
                 loadingBar.setMessage("Please wait while we are uploading your profile image");
@@ -172,7 +168,6 @@ public class SetupActivity extends AppCompatActivity
                                 }
                             });
                     }
-
                 });
             }
             else
@@ -183,23 +178,21 @@ public class SetupActivity extends AppCompatActivity
         }
     }
 
-
-
     private void SaveAccountSetupInformation()
     {
         String username = userName.getText().toString();
         String fullname = fullName.getText().toString();
         String bio = biography.getText().toString();
 
-        if(TextUtils.isEmpty(username))
+        if (TextUtils.isEmpty(username))
         {
             Toast.makeText(this,"Type your username",Toast.LENGTH_SHORT).show();
         }
-        else if(TextUtils.isEmpty(fullname))
+        else if (TextUtils.isEmpty(fullname))
         {
             Toast.makeText(this,"Type your fullname",Toast.LENGTH_SHORT).show();
         }
-        else if(TextUtils.isEmpty(bio))
+        else if (TextUtils.isEmpty(bio))
         {
             Toast.makeText(this,"Type your biography",Toast.LENGTH_SHORT).show();
         }
@@ -232,11 +225,7 @@ public class SetupActivity extends AppCompatActivity
                     }
                 }
             });
-
-
         }
-
-
     }
 
     private void SendUsertoMainActivity()

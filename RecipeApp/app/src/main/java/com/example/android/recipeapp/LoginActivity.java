@@ -21,10 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity
 {
-    private Button LoginButton;
     private EditText UserEmail;
     private EditText UserPassword;
-    private TextView NewAccountLink;
     private ProgressDialog loadingBar;
 
     private FirebaseAuth mAuth;
@@ -37,14 +35,13 @@ public class LoginActivity extends AppCompatActivity
 
         mAuth = FirebaseAuth.getInstance();
 
-        NewAccountLink = (TextView) findViewById (R.id.register_link);
+        TextView newAccountLink = (TextView) findViewById(R.id.register_link);
         UserEmail = (EditText) findViewById(R.id.login_email);
         UserPassword = (EditText) findViewById(R.id.login_password);
-        LoginButton = (Button) findViewById(R.id.login_button);
+        Button loginButton = (Button) findViewById(R.id.login_button);
         loadingBar = new ProgressDialog(this);
 
-
-        NewAccountLink.setOnClickListener(new View.OnClickListener() {
+        newAccountLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
@@ -52,14 +49,13 @@ public class LoginActivity extends AppCompatActivity
             }
         });
 
-        LoginButton.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
                 AllowUsertoLogIn();
             }
         });
-
     }
 
     @Override
@@ -111,7 +107,6 @@ public class LoginActivity extends AppCompatActivity
                 }
             });
         }
-
     }
 
     private void SendUsertoMainActivity()
