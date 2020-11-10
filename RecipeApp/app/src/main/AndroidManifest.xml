@@ -15,9 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".postLayout" />
-        <activity
-            android:name=".findfriends"
-            android:parentActivityName=".MainActivity" />
         <activity android:name=".SearchPage" />
         <activity
             android:name=".NutritionEdit"
