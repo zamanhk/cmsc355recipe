@@ -72,24 +72,6 @@
 
         </ImageButton>
 
-        <Button
-            android:id="@+id/IngredientsView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ingredients" />
-
-        <Button
-            android:id="@+id/InstructionView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Instructions" />
-
-        <Button
-            android:id="@+id/NutView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nutrition" />
-
 
     </LinearLayout>
 

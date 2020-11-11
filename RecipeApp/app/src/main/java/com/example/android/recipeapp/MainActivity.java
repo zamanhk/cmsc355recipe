@@ -6,6 +6,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Build;    
@@ -24,9 +26,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
-
-import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         /******************************************************
-        *REMOVE AFTER IMPORTING JAMAR'S NAV BAR
+        *Button creation: add and search
          *****************************************************/
 
         addButton = findViewById(R.id.newPostButton);
@@ -65,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         /*******************************************************************************************
          * Search Bar Button
          *******************************************************************************************/
@@ -80,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*******************************************************************************************
+         * Instantiating variables
+         *******************************************************************************************/
         mAuth =FirebaseAuth.getInstance();
         currentUserId = mAuth.getCurrentUser().getUid();
         userRef = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -94,41 +95,16 @@ public class MainActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
+
+
         navProfileImage = (CircleImageView) findViewById(R.id.nav_profile_image);
         navProfileUsername = (TextView) findViewById(R.id.nav_user_full_name);
 
+
+        /*******************************************************************************************
+         * adding the currentId uid to the firebase database
+         *******************************************************************************************/
         userRef.child(currentUserId);
-        userRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                if (dataSnapshot.exists())
-                {
-
-                    if (dataSnapshot.hasChild("FullName"))
-                    {
-                        String fullName = Objects.requireNonNull(dataSnapshot.child("FullName").getValue()).toString();
-                        navProfileUsername.setText(fullName);
-                    }
-                    if (dataSnapshot.hasChild("ProfileImage"))
-                    {
-                        String image = Objects.requireNonNull(dataSnapshot.child("ProfileImage").getValue()).toString();
-                        Picasso.get().load(image).placeholder(R.drawable.profile).into(navProfileImage);
-                    }
-                }
-
-                else {
-                    Toast.makeText(MainActivity.this,
-                            "Profile name and image does not exist",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -139,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /*******************************************************************************************
+     * user valdiations and checking methods
+     *******************************************************************************************/
     protected void onStart()
     {
         super.onStart();
@@ -173,6 +152,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /*******************************************************************************************
+     * Intent movement methods
+     *******************************************************************************************/
     private void SendUsertoSetupActivity()
     {
         Intent AuthNoSetup = new Intent(MainActivity.this, SetupActivity.class);
@@ -189,6 +171,9 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+    /*******************************************************************************************
+     * Shows the toggle bar on the home page
+     *******************************************************************************************/
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item)
     {
@@ -199,6 +184,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*******************************************************************************************
+     * Shows item selectability
+     *******************************************************************************************/
     private void UserMenuSelector(MenuItem item)
     {
         switch(item.getItemId())
@@ -218,10 +206,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
-    /*******************************************************************************************
-     * SendUsertoFindFriends will send the User to the find friends activity
-     *******************************************************************************************/
 
 
 }
