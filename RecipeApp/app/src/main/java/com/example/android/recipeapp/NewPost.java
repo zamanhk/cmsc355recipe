@@ -22,6 +22,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.w3c.dom.Text;
+
 /*******************************************************************************************
  * The new post page when button is clicked on main screen.
  *****************************************NOTES*********************************************
@@ -33,11 +35,9 @@ import com.google.firebase.storage.UploadTask;
 public class NewPost extends AppCompatActivity
 {
     private ImageButton selectImage;
-    private Button ingredientsBtn;
-    private EditText captionBox, recipeNameBox;
-    private String description;
-    private String recipeName;
-    private String imageuri;
+    private EditText captionBox, recipeNameBox, ingredientsBox, instructionsBox;
+    private String description, recipeName, imageuri, instructions, ingredients;
+    private Button goToNutritionBtn;
 
     private StorageReference postImageReference;
     private Uri image;
@@ -55,9 +55,11 @@ public class NewPost extends AppCompatActivity
 
         postImageReference = FirebaseStorage.getInstance().getReference().child("PostImages"); // creates a folder
         selectImage = findViewById(R.id.imageButton);
-        ingredientsBtn = findViewById(R.id.ingredientsButton);
         captionBox = findViewById(R.id.descriptionBox);
         recipeNameBox = findViewById(R.id.RecipeName);
+        ingredientsBox = findViewById(R.id.ingredientsBox);
+        instructionsBox = findViewById(R.id.instructionsBox);
+        goToNutritionBtn = findViewById(R.id.goToNutrition);
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -75,15 +77,13 @@ public class NewPost extends AppCompatActivity
             }
         });
 
-        /*******************************************************************************************
-         * Button to navigate to add ingredients page
-         *******************************************************************************************/
-        ingredientsBtn.setOnClickListener(new View.OnClickListener() {
+        goToNutritionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 ValidatePostInfo();
             }
         });
+
     }
 
     /*******************************************************************************************
@@ -95,6 +95,9 @@ public class NewPost extends AppCompatActivity
     {
         description = captionBox.getText().toString();
         recipeName = recipeNameBox.getText().toString();
+        instructions = instructionsBox.getText().toString();
+        ingredients = ingredientsBox.getText().toString();
+
         if(image == null)
         {
             Toast.makeText(NewPost.   this, "Please select an image for your post ",Toast.LENGTH_SHORT).show();
@@ -107,23 +110,33 @@ public class NewPost extends AppCompatActivity
         {
             Toast.makeText(NewPost.   this, "Please Enter the Title of your recipe ",Toast.LENGTH_SHORT).show();
         }
+        else if (TextUtils.isEmpty(ingredients))
+        {
+            Toast.makeText(NewPost.   this, "Please Enter the Ingredients of your recipe ",Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(instructions))
+        {
+            Toast.makeText(NewPost.   this, "Please Enter the Instructions of your recipe ",Toast.LENGTH_SHORT).show();
+        }
         else
         {
-            SendToIngredients();
+            SendToNutrition();
         }
 
     }
 
     /*******************************************************************************************
-     * SendToIngredients will send the recipe name, description, and image
-     * to the ingredients activity.
+     * SendToNutrition will send the recipe name, description, and image
+     * to the NutritionEdit activity.
      *******************************************************************************************/
 
-    private void SendToIngredients() {
-        Intent intent = new Intent(NewPost.this, AddIngredients.class);
+    private void SendToNutrition() {
+        Intent intent = new Intent(NewPost.this, NutritionEdit.class);
         intent.putExtra("recipeName", recipeName);
         intent.putExtra("description",description);
         intent.putExtra("image", imageuri); //This is the String of the Uri image. Remember to convert to Uri at the end
+        intent.putExtra("ingredients", ingredients);
+        intent.putExtra("instructions", instructions);
         startActivity(intent);
     }
 
