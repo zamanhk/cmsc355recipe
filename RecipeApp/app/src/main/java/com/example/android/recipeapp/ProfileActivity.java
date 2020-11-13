@@ -33,6 +33,7 @@ public class ProfileActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+
         profileName = (TextView) findViewById(R.id.myProfileUsername);
         userName = (TextView) findViewById(R.id.myUserUsername);
         bio = (TextView) findViewById(R.id.bio);
