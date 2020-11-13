@@ -9,8 +9,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="16dp">
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="276dp">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -148,10 +148,30 @@
                 android:text="Add Nutrition"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.75"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/instructionsBox">
+                app:layout_constraintTop_toBottomOf="@+id/instructionsBox"
+                app:layout_constraintVertical_bias="1.0">
 
             </Button>
+
+            <Button
+                android:id="@+id/backbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/goToNutrition"
+                android:layout_marginTop="75dp"
+                android:layout_marginBottom="3dp"
+                android:text="Back to home"
+                app:layout_constraintBottom_toBottomOf="@+id/goToNutrition"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.075"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/instructionsBox"
+                app:layout_constraintVertical_bias="0.0">
+
+            </Button>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

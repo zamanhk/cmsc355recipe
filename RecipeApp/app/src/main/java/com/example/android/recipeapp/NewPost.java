@@ -37,7 +37,7 @@ public class NewPost extends AppCompatActivity
     private ImageButton selectImage;
     private EditText captionBox, recipeNameBox, ingredientsBox, instructionsBox;
     private String description, recipeName, imageuri, instructions, ingredients;
-    private Button goToNutritionBtn;
+    private Button goToNutritionBtn, backButton;
 
     private StorageReference postImageReference;
     private Uri image;
@@ -60,6 +60,7 @@ public class NewPost extends AppCompatActivity
         ingredientsBox = findViewById(R.id.ingredientsBox);
         instructionsBox = findViewById(R.id.instructionsBox);
         goToNutritionBtn = findViewById(R.id.goToNutrition);
+        backButton = findViewById(R.id.backbutton);
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -81,6 +82,14 @@ public class NewPost extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 ValidatePostInfo();
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(NewPost.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
