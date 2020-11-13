@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,15 +66,25 @@ public class NutritionEdit extends AppCompatActivity
                 EditText fiberNum = findViewById(R.id.fiberNum);
                 EditText proteinNum = findViewById(R.id.proteinNum);
 
-                String servingSizeString = servingSizeNum.getText().toString();
-                String calString = calorieNum.getText().toString();
-                String fatString = fatNum.getText().toString();
-                String satFatString =  satFatNum.getText().toString();
-                String cholesterolString = cholesterolNum.getText().toString();
-                String sodiumString = sodiumNum.getText().toString();
-                String totalCarbString = totalCarbNum.getText().toString();
-                String fiberString = fiberNum.getText().toString();
-                String proteinString = proteinNum.getText().toString();
+                String servingSizeString;
+                String calString;
+                String fatString;
+                String satFatString;
+                String cholesterolString;
+                String sodiumString;
+                String totalCarbString;
+                String fiberString;
+                String proteinString;
+
+                servingSizeString = TextUtils.isEmpty(servingSizeNum.getText().toString()) ? "0" : servingSizeNum.getText().toString();
+                calString = TextUtils.isEmpty(calorieNum.getText().toString()) ? "0" : calorieNum.getText().toString();
+                fatString = TextUtils.isEmpty(fatNum.getText().toString()) ? "0" : fatNum.getText().toString();
+                satFatString = TextUtils.isEmpty(satFatNum.getText().toString()) ? "0" : satFatNum.getText().toString();
+                cholesterolString = TextUtils.isEmpty(cholesterolNum.getText().toString()) ? "0" : cholesterolNum.getText().toString();
+                sodiumString = TextUtils.isEmpty(sodiumNum.getText().toString()) ? "0" : sodiumNum.getText().toString();
+                totalCarbString = TextUtils.isEmpty(totalCarbNum.getText().toString()) ? "0" : totalCarbNum.getText().toString();
+                fiberString = TextUtils.isEmpty(fiberNum.getText().toString()) ? "0" : fiberNum.getText().toString();
+                proteinString = TextUtils.isEmpty(proteinNum.getText().toString()) ? "0" : proteinNum.getText().toString();
 
                 /*******************************************************************************************
                  * Declare and Initialize the intent
