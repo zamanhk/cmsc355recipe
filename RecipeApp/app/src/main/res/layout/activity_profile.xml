@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/myProfileImage"
-                android:layout_marginTop="26dp"
+                android:layout_marginTop="5dp"
                 android:text="Full Name"
                 android:textAlignment="center"
                 android:textAllCaps="false"
@@ -50,8 +50,7 @@
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@android:color/background_light"
-                android:textSize="20sp"
-                android:textStyle="bold">
+                android:textSize="18sp">
             </TextView>
 
             <TextView
@@ -63,10 +62,23 @@
                 android:layout_marginTop="5dp"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textColor="@android:color/background_light"
-                android:textSize="22sp"
-                android:textStyle="bold">
+                android:textColor="@android:color/darker_gray"
+                android:textSize="22sp">
             </TextView>
+
+            <Button
+                android:id="@+id/backbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bio"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="150dp"
+                android:layout_marginEnd="150dp"
+                android:text="Back to Home">
+
+            </Button>
 
 
         </RelativeLayout>

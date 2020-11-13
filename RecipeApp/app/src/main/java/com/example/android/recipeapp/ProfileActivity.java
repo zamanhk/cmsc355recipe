@@ -3,7 +3,10 @@ package com.example.android.recipeapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -21,6 +24,7 @@ public class ProfileActivity extends AppCompatActivity
 {
     private TextView profileName, userName, bio;
     private CircleImageView userImage;
+    private Button backButton;
 
     private DatabaseReference userRef;
     private FirebaseAuth myAuth;
@@ -38,10 +42,20 @@ public class ProfileActivity extends AppCompatActivity
         userName = (TextView) findViewById(R.id.myUserUsername);
         bio = (TextView) findViewById(R.id.bio);
         userImage = (CircleImageView) findViewById(R.id.myProfileImage);
+        backButton = (Button) findViewById(R.id.backbutton);
 
         myAuth = FirebaseAuth.getInstance();
         currentUserId = myAuth.getCurrentUser().getUid();
         userRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(ProfileActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -55,9 +69,9 @@ public class ProfileActivity extends AppCompatActivity
                     String profileImageRetrieval = dataSnapshot.child("ProfileImage").getValue().toString();
 
                     Picasso.get().load(profileImageRetrieval).placeholder(R.drawable.profile).into(userImage);
-                    profileName.setText("Full Name: " + fullNameRetrieval);
-                    userName.setText("Username: " + userNameRetrieval);
-                    bio.setText("Biography: " + bioRetrieval);
+                    profileName.setText(fullNameRetrieval);
+                    userName.setText("@" + userNameRetrieval);
+                    bio.setText(bioRetrieval);
 
 
                 }

@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        View navView = navigationView.inflateHeaderView(R.layout.navigation_header);
 
 
         navProfileImage = (CircleImageView) findViewById(R.id.nav_profile_image);
