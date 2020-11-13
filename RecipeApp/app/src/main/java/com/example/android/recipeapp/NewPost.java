@@ -87,7 +87,7 @@ public class NewPost extends AppCompatActivity
     }
 
     /*******************************************************************************************
-     * Checks if the User has entered a picture, a recipe name, and a description
+     * Checks if the User has entered a all required texts
      * of the recipe.
      *******************************************************************************************/
 
@@ -102,13 +102,13 @@ public class NewPost extends AppCompatActivity
         {
             Toast.makeText(NewPost.   this, "Please select an image for your post ",Toast.LENGTH_SHORT).show();
         }
-        else if(TextUtils.isEmpty(description))
-        {
-            Toast.makeText(NewPost.   this, "Please write a description of your recipe ",Toast.LENGTH_SHORT).show();
-        }
-        else if (TextUtils.isEmpty(recipeName))
+        else if(TextUtils.isEmpty(recipeName))
         {
             Toast.makeText(NewPost.   this, "Please Enter the Title of your recipe ",Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(description))
+        {
+            Toast.makeText(NewPost.   this, "Please write a description of your recipe ",Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(ingredients))
         {

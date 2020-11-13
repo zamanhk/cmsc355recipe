@@ -44,16 +44,26 @@ public class NutritionPageDisplay extends AppCompatActivity {
          * Initialize the textview
          *******************************************************************************************/
 
+        String servingSizeString;
+        String caloriesString;
+        String totalfatString;
+        String satfatString;
+        String cholesterolString;
+        String sodiumString;
+        String totalCarbString;
+        String dietaryFiberString;
+        String proteinString;
+
         Intent intent = getIntent();
-        String servingSizeString = intent.getStringExtra(NutritionEdit.SERVINGSIZE);
-        String caloriesString = AddGramstoString(intent.getStringExtra(NutritionEdit.CALORIES));
-        String totalfatString = AddGramstoString(intent.getStringExtra(NutritionEdit.TOTALFAT));
-        String satfatString = AddGramstoString(intent.getStringExtra(NutritionEdit.SATFAT));
-        String cholesterolString = AddMilligramstoString(intent.getStringExtra(NutritionEdit.CHOLESTEROL));
-        String sodiumString = AddMilligramstoString(intent.getStringExtra(NutritionEdit.SODIUM));
-        String totalCarbString = AddGramstoString(intent.getStringExtra(NutritionEdit.TOTALCARBOHYDRATES));
-        String dietaryFiberString = AddGramstoString(intent.getStringExtra(NutritionEdit.DIETARYFIBER));
-        String proteinString = AddMilligramstoString(intent.getStringExtra(NutritionEdit.PROTEIN));
+        servingSizeString = intent.getStringExtra(NutritionEdit.SERVINGSIZE);
+        caloriesString = AddGramstoString(intent.getStringExtra(NutritionEdit.CALORIES));
+        totalfatString = AddGramstoString(intent.getStringExtra(NutritionEdit.TOTALFAT));
+        satfatString = AddGramstoString(intent.getStringExtra(NutritionEdit.SATFAT));
+        cholesterolString = AddMilligramstoString(intent.getStringExtra(NutritionEdit.CHOLESTEROL));
+        sodiumString = AddMilligramstoString(intent.getStringExtra(NutritionEdit.SODIUM));
+        totalCarbString = AddGramstoString(intent.getStringExtra(NutritionEdit.TOTALCARBOHYDRATES));
+        dietaryFiberString = AddGramstoString(intent.getStringExtra(NutritionEdit.DIETARYFIBER));
+        proteinString = AddMilligramstoString(intent.getStringExtra(NutritionEdit.PROTEIN));
 
         TextView servingSizeView = findViewById(R.id.servingSizeView);
         TextView caloriesView = findViewById(R.id.calorieView);
