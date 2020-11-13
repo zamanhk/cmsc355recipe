@@ -170,6 +170,14 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+    private void SendUserToProfileActivity()
+    {
+        Intent profileIntent = new Intent(MainActivity.this, ProfileActivity.class);
+        profileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(profileIntent);
+        finish();
+    }
+
     /*******************************************************************************************
      * Shows the toggle bar on the home page
      *******************************************************************************************/
@@ -192,12 +200,10 @@ public class MainActivity extends AppCompatActivity {
         {
             case R.id.nav_profile_image:
                 Toast.makeText(this,"Profile", Toast.LENGTH_SHORT).show();
+                SendUserToProfileActivity();
                 break;
             case R.id.nav_home:
                 Toast.makeText(this,"Home", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_settings:
-                Toast.makeText(this,"Settings", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
                 mAuth.signOut();
