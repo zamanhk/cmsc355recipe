@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
     private CircleImageView navProfileImage;
     private TextView navProfileUsername;
 
-    private Button addButton;
-    private Button searchButton;
+    private Button addButton,searchButton,myRecipies;
     private FirebaseAuth mAuth;
     private DatabaseReference userRef;
+    private TextView welcome;
 
     String currentUserId;
 
@@ -78,8 +78,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /*******************************************************************************************
+         * Myrecipies button
+         *******************************************************************************************/
+
+        myRecipies = findViewById(R.id.myRecipes);
+        myRecipies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(getApplicationContext(), MyRecipiesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        /*******************************************************************************************
          * Instantiating variables
          *******************************************************************************************/
+
+        welcome = (TextView) findViewById(R.id.welcome);
         mAuth =FirebaseAuth.getInstance();
         currentUserId = mAuth.getCurrentUser().getUid();
         userRef = FirebaseDatabase.getInstance().getReference().child("Users");
