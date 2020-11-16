@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <include
             android:id="@+id/main_page_toolbar"
@@ -17,39 +17,57 @@
 
         </include>
 
-        <FrameLayout
-            android:id="@+id/main_container"
-            android:layout_width="match_parent"
-            android:layout_height="670dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="61dp">
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="458dp"
+            android:layout_height="141dp"
+            android:layout_above="@+id/searchBtn"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="75dp"
+            android:layout_marginEnd="155dp"
+            android:layout_marginBottom="755dp"
+            android:gravity="center"
+            android:text="What would you like to do?"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/all_options_list"
-                android:layout_width="569dp"
-                android:layout_height="552dp" />
-
-        </FrameLayout>
+        </TextView>
 
         <Button
             android:id="@+id/newPostButton"
-            android:layout_width="117dp"
-            android:layout_height="wrap_content"
+            android:layout_width="445dp"
+            android:layout_height="120dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="157dp"
+            android:layout_marginTop="466dp"
+            android:layout_marginEnd="245dp"
             android:layout_marginRight="157dp"
-            android:text="+" />
+            android:text="Add a Recipe" />
 
         <Button
             android:id="@+id/searchBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="445dp"
+            android:layout_height="120dp"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="19dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="255dp"
             android:layout_marginRight="19dp"
+            android:layout_marginBottom="288dp"
             android:text="Search" />
+
+        <Button
+            android:id="@+id/myRecipes"
+            android:layout_width="458dp"
+            android:layout_height="130dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="240dp"
+            android:layout_marginRight="19dp"
+            android:layout_marginBottom="588dp"
+            android:text="My Recipes" />
 
     </RelativeLayout>
 
