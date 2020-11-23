@@ -66,7 +66,7 @@ public class ProfileActivity extends AppCompatActivity
                     String userNameRetrieval = dataSnapshot.child("Username").getValue().toString();
                     String fullNameRetrieval = dataSnapshot.child("FullName").getValue().toString();
                     String bioRetrieval = dataSnapshot.child("Biography").getValue().toString();
-                    String profileImageRetrieval = dataSnapshot.child("ProfileImage").getValue().toString();
+                    String profileImageRetrieval = dataSnapshot.child("ProfileImage").getValue(String.class);
 
                     Picasso.get().load(profileImageRetrieval).placeholder(R.drawable.profile).into(userImage);
                     profileName.setText(fullNameRetrieval);

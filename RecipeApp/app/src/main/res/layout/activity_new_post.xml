@@ -64,6 +64,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:gravity="start|top"
+                android:hint="Please Enter the Description"
                 android:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.333"
@@ -87,6 +88,7 @@
                 android:layout_marginTop="20dp"
                 android:ems="10"
                 android:gravity="start|top"
+                android:hint="Recipe Name"
                 android:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.405"
@@ -100,7 +102,7 @@
                 android:text="Ingredients:"
                 app:layout_constraintBottom_toTopOf="@+id/ingredientsBox"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.062"
+                app:layout_constraintHorizontal_bias="0.047"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
@@ -110,6 +112,7 @@
                 android:layout_marginTop="48dp"
                 android:ems="10"
                 android:gravity="start|top"
+                android:hint="Please Enter the Ingredients"
                 android:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.338"
@@ -120,10 +123,11 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
                 android:text="Instructions"
                 app:layout_constraintBottom_toTopOf="@+id/instructionsBox"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.07"
+                app:layout_constraintHorizontal_bias="0.047"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
@@ -133,6 +137,7 @@
                 android:layout_marginTop="36dp"
                 android:ems="10"
                 android:gravity="start|top"
+                android:hint="Please Enter the Instructions"
                 android:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.338"
@@ -144,14 +149,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="75dp"
-                android:layout_marginBottom="125dp"
+                android:layout_marginBottom="130dp"
                 android:text="Add Nutrition"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.75"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/instructionsBox"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintVertical_bias="0.0">
 
             </Button>
 
@@ -160,15 +165,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/goToNutrition"
-                android:layout_marginTop="75dp"
-                android:layout_marginBottom="3dp"
+                android:layout_marginTop="85dp"
                 android:text="Back to home"
                 app:layout_constraintBottom_toBottomOf="@+id/goToNutrition"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.075"
+                app:layout_constraintHorizontal_bias="0.143"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/instructionsBox"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintVertical_bias="1.0">
 
             </Button>
 
