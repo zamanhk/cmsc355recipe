@@ -17,6 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <include
+                android:id="@+id/main_page_toolbar"
+                layout="@layout/app_bar_layout">
+
+            </include>
+
             <View
                 android:id="@+id/divider"
                 android:layout_width="409dp"
@@ -27,22 +33,22 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.047" />
 
+
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="80dp"
-                android:layout_height="29dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="New Post"
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="18sp"
+                android:textSize="26sp"
                 android:textStyle="bold"
                 android:typeface="normal"
                 app:layout_constraintBottom_toTopOf="@+id/divider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.461" />
-
+                app:layout_constraintVertical_bias="0.64" />
 
             <ImageButton
                 android:id="@+id/imageButton"
@@ -76,6 +82,7 @@
                 android:layout_width="79dp"
                 android:layout_height="19dp"
                 android:text="Description:"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/descriptionBox"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.048"
@@ -100,6 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ingredients:"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/ingredientsBox"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.047"
@@ -125,6 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:text="Instructions"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/instructionsBox"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.047"
