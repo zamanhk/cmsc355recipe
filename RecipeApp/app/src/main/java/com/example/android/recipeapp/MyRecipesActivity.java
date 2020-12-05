@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class MyRecipiesActivity extends AppCompatActivity {
+public class MyRecipesActivity extends AppCompatActivity {
     private TextView recipeName, ingredients, instructions, nutrition;
     private DatabaseReference userRef;
     private FirebaseAuth myAuth;

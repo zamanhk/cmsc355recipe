@@ -13,15 +13,17 @@
         android:id="@+id/login_icon"
         android:layout_width="218dp"
         android:layout_height="212dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="96dp"
-        android:layout_marginRight="96dp"
-        android:layout_marginBottom="494dp"
-        app:srcCompat="@drawable/Sharables_Final" />
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="95dp"
+        android:layout_marginRight="95dp"
+        android:layout_marginBottom="496dp"
+        app:srcCompat="@drawable/sharables_app_logo" />
 
     <EditText
         android:id="@+id/login_email"

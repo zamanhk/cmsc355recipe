@@ -19,7 +19,7 @@
         android:layout_marginEnd="96dp"
         android:layout_marginRight="96dp"
         android:layout_marginBottom="464dp"
-        app:srcCompat="@drawable/Sharables_Final" />
+        app:srcCompat="@drawable/sharables_app_logo" />
 
     <EditText
         android:id="@+id/register_email"

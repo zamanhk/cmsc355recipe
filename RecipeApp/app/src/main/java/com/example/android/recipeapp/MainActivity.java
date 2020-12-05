@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private CircleImageView navProfileImage;
     private TextView navProfileUsername;
 
-    private Button addButton,searchButton,myRecipies;
+    private Button addButton,searchButton,myRecipes;
     private FirebaseAuth mAuth;
     private DatabaseReference userRef;
     private TextView welcome;
@@ -80,12 +80,12 @@ public class MainActivity extends AppCompatActivity {
          * Myrecipies button
          *******************************************************************************************/
 
-        myRecipies = findViewById(R.id.myRecipes);
-        myRecipies.setOnClickListener(new View.OnClickListener() {
+        myRecipes = findViewById(R.id.myRecipes);
+        myRecipes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(getApplicationContext(), MyRecipiesActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MyRecipesActivity.class);
                 startActivity(intent);
             }
         });
