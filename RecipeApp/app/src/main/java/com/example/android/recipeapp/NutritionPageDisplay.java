@@ -131,20 +131,24 @@ public class NutritionPageDisplay extends AppCompatActivity {
         myRef.child("recipes").child(recipeName).child("Description").setValue(description);
         myRef.child("recipes").child(recipeName).child("Ingredients").setValue(ingredients);
         myRef.child("recipes").child(recipeName).child("Instructions").setValue(instructions);
-        myRef.child("recipes").child(recipeName).child("Nutrition Facts").setValue("");
-        myRef.child("recipes").child(recipeName).child("Nutrition Facts").child("Serving Size").setValue(servingSizeString);
-        myRef.child("recipes").child(recipeName).child("Nutrition Facts").child("Calories").setValue(caloriesString);
-        myRef.child("recipes").child(recipeName).child("Nutrition Facts").child("Total Fat").setValue(totalfatString);
-        myRef.child("recipes").child(recipeName).child("Nutrition Facts").child("Saturated Fat").setValue(satfatString);
-        myRef.child("recipes").child(recipeName).child("Nutrition Facts").child("Cholesterol").setValue(cholesterolString);
-        myRef.child("recipes").child(recipeName).child("Nutrition Facts").child("Sodium").setValue(sodiumString);
-        myRef.child("recipes").child(recipeName).child("Nutrition Facts").child("Total Carbohydrates").setValue(totalCarbString);
-        myRef.child("recipes").child(recipeName).child("Nutrition Facts").child("Dietary Fiber").setValue(dietaryFiberString);
-        myRef.child("recipes").child(recipeName).child("Nutrition Facts").child("Protein").setValue(proteinString);
+        getNutritionFactsChild(recipeName, myRef, "recipes", "Nutrition Facts").setValue("");
+        getNutritionFactsChild("Nutrition Facts", myRef.child("recipes"), recipeName, "Serving Size").setValue(servingSizeString);
+        getNutritionFactsChild("Nutrition Facts", myRef.child("recipes"), recipeName, "Calories").setValue(caloriesString);
+        getNutritionFactsChild("Nutrition Facts", myRef.child("recipes"), recipeName, "Total Fat").setValue(totalfatString);
+        getNutritionFactsChild("Nutrition Facts", myRef.child("recipes"), recipeName, "Saturated Fat").setValue(satfatString);
+        getNutritionFactsChild("Nutrition Facts", myRef.child("recipes"), recipeName, "Cholesterol").setValue(cholesterolString);
+        getNutritionFactsChild("Nutrition Facts", myRef.child("recipes"), recipeName, "Sodium").setValue(sodiumString);
+        getNutritionFactsChild("Nutrition Facts", myRef.child("recipes"), recipeName, "Total Carbohydrates").setValue(totalCarbString);
+        getNutritionFactsChild("Nutrition Facts", myRef.child("recipes"), recipeName, "Dietary Fiber").setValue(dietaryFiberString);
+        getNutritionFactsChild("Nutrition Facts", myRef.child("recipes"), recipeName, "Protein").setValue(proteinString);
         myRef.child("recipes").child(recipeName).child("imageuri").setValue(image);
 
         Toast.makeText(NutritionPageDisplay.this, "Posting " + recipeName + ".", Toast.LENGTH_LONG).show();
         SendUsertoMain();
+    }
+
+    private DatabaseReference getNutritionFactsChild(String recipeName, DatabaseReference myRef, String recipes, String s) {
+        return myRef.child(recipes).child(recipeName).child(s);
     }
 
     /*******************************************************************************************

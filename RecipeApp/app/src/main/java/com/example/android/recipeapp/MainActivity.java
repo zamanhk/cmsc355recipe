@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
 
-
 import android.content.Intent;
 import android.os.Build;    
 import android.os.Bundle;
@@ -112,10 +111,8 @@ public class MainActivity extends AppCompatActivity {
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
         View navView = navigationView.inflateHeaderView(R.layout.navigation_header);
 
-
         navProfileImage = (CircleImageView) findViewById(R.id.nav_profile_image);
         navProfileUsername = (TextView) findViewById(R.id.nav_user_full_name);
-
 
         /*******************************************************************************************
          * adding the currentId uid to the firebase database

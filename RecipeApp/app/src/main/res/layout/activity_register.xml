@@ -9,17 +9,17 @@
 
     <ImageView
         android:id="@+id/Register_icon"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="218dp"
+        android:layout_height="212dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="145dp"
-        android:layout_marginRight="145dp"
-        android:layout_marginBottom="509dp"
-        app:srcCompat="@drawable/foodgive" />
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginRight="96dp"
+        android:layout_marginBottom="464dp"
+        app:srcCompat="@drawable/Sharables_Final" />
 
     <EditText
         android:id="@+id/register_email"
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/register_confirm_password"
         android:layout_marginBottom="-84dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:padding="15dp"
         android:text="Create Account"
         android:textStyle="bold" />

@@ -72,8 +72,6 @@ public class ProfileActivity extends AppCompatActivity
                     profileName.setText(fullNameRetrieval);
                     userName.setText("@" + userNameRetrieval);
                     bio.setText(bioRetrieval);
-
-
                 }
             }
 

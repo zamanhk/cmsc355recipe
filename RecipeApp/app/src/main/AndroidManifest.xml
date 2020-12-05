@@ -31,7 +31,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".filterSearch" />
         <activity android:name=".AlyciaActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
