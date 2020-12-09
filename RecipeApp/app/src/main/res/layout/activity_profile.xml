@@ -11,11 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
-
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/myProfileImage"
@@ -24,8 +25,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/profile">
-            </de.hdodenhof.circleimageview.CircleImageView>
+                android:src="@drawable/profile"></de.hdodenhof.circleimageview.CircleImageView>
 
             <TextView
                 android:id="@+id/myProfileUsername"
@@ -44,27 +44,25 @@
                 android:id="@+id/myUserUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Username"
                 android:layout_below="@+id/myProfileUsername"
                 android:layout_marginTop="5dp"
+                android:text="Username"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@android:color/background_light"
-                android:textSize="18sp">
-            </TextView>
+                android:textSize="18sp"></TextView>
 
             <TextView
                 android:id="@+id/bio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bio"
                 android:layout_below="@+id/myUserUsername"
                 android:layout_marginTop="5dp"
+                android:text="Bio"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="22sp">
-            </TextView>
+                android:textSize="22sp"></TextView>
 
             <Button
                 android:id="@+id/backbutton"
