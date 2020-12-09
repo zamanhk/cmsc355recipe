@@ -5,7 +5,7 @@
     android:id="@+id/RelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/colorPrimary"
     tools:context=".SetupActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -68,16 +68,16 @@
 
     <Button
         android:id="@+id/setup_saving_button"
-        android:layout_width="125dp"
-        android:layout_height="70dp"
+        android:layout_width="126dp"
+        android:layout_height="106dp"
         android:layout_alignBottom="@+id/setup_bio"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginEnd="139dp"
         android:layout_marginRight="139dp"
-        android:layout_marginBottom="-110dp"
+        android:layout_marginBottom="-134dp"
+        android:background="@drawable/save_button_white"
         android:padding="14dp"
-        android:text="Save"
         android:textStyle="bold" />
 
 </RelativeLayout>
