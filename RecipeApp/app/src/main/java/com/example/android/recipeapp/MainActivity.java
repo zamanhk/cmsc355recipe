@@ -176,6 +176,14 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+    private void SendUsertoMainActivity()
+    {
+        Intent selfClick = new Intent(MainActivity.this, MainActivity.class);
+        selfClick.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(selfClick);
+        finish();
+    }
+
     private void SendUserToLoginActivity()
     {
         Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
@@ -218,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.nav_home:
                 Toast.makeText(this,"Home", Toast.LENGTH_SHORT).show();
+                SendUsertoMainActivity();
                 break;
             case R.id.nav_logout:
                 mAuth.signOut();
